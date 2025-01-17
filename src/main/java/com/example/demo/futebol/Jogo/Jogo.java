@@ -1,7 +1,11 @@
-package com.example.demo.futebol;
+package com.example.demo.futebol.Jogo;
 
 import jakarta.persistence.*;
 import java.util.*;
+
+import com.example.demo.futebol.Arbitro.Arbitro;
+import com.example.demo.futebol.Competicao.Competicao;
+import com.example.demo.futebol.Estadio.Estadio;
 
 @Entity
 @Table(name = "Jogo", schema = "public")

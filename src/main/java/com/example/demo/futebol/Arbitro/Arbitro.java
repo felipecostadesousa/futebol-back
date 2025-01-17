@@ -1,9 +1,14 @@
-package com.example.demo;
+package com.example.demo.futebol.Arbitro;
 
 import java.util.*;
 
+import com.example.demo.futebol.Pessoa.Pessoa;
+
 import jakarta.persistence.*;
 
+
+@Entity
+@Table(name="arbitro", schema = "public")
 public class Arbitro {
 
     @Id

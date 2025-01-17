@@ -1,4 +1,7 @@
-package com.example.demo.futebol;
+package com.example.demo.futebol.JogadaorTitulo;
+
+import com.example.demo.futebol.Jogador.Jogador;
+import com.example.demo.futebol.Titulo.Titulo;
 
 import jakarta.persistence.*;
 

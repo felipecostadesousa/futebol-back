@@ -1,6 +1,9 @@
-package com.example.demo;
+package com.example.demo.futebol.Tecnico;
 
 import java.util.*;
+
+import com.example.demo.futebol.Pessoa.Pessoa;
+import com.example.demo.futebol.Time.Time;
 
 import jakarta.persistence.*;
 

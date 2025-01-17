@@ -1,4 +1,4 @@
-package com.example.demo.futebol;
+package com.example.demo.futebol.Competicao;
 
 import jakarta.persistence.*;
 
