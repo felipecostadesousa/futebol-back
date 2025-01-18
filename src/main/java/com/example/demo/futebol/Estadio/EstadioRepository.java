@@ -1,46 +1,98 @@
 package com.example.demo.futebol.Estadio;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.springframework.stereotype.Repository;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceException;
+import jakarta.persistence.TypedQuery;
+
+@Repository
 public class EstadioRepository implements EstadioDao {
+
+    private EntityManager em;
+    private static final Logger LOGGER = LoggerFactory.getLogger(EstadioRepository.class.getName());
 
     @Override
     public void save(Estadio estadio) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        try{
+            em.persist(estadio);
+        }catch(PersistenceException e){
+            LOGGER.error("Erro de persistência: não foi possível criar estádio", e.getMessage());
+        }
     }
 
     @Override
     public void delete(Estadio estadio) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        try{
+            em.remove(estadio);
+        }catch(PersistenceException e){
+            LOGGER.error("Erro de persistência: não foi possível deletar estádio", e.getMessage());
+        }
     }
 
     @Override
     public void update(Estadio estadio) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        try{
+            em.merge(estadio);
+        }catch(PersistenceException e){
+            LOGGER.error("Erro de persistência: não foi possível atualizar estádio", e.getMessage());
+        }
     }
 
     @Override
     public Optional<Estadio> findById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        String jpql = "SELECT estadio FROM Estadio estadio WHERE estadio.id = :id_estadio";
+
+        TypedQuery<Estadio> query = em.createQuery(jpql, Estadio.class);
+        query.setParameter("id_estadio", id);
+
+        try{
+            Estadio estadio = query.getSingleResult();
+            return Optional.of(estadio);
+        }catch(Exception e){
+            LOGGER.error("Erro de persistência: não foi possível recuperar o estádio com id {} => {}", id, e.getMessage());
+        }
+
+        return Optional.empty();
     }
 
     @Override
     public Optional<Estadio> findByName(String nome) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByName'");
+        String jpql = "SELECT estadio FROM Estadio estadio WHERE estadio.nome = :nome_estadio";
+
+        TypedQuery<Estadio> query = em.createQuery(jpql, Estadio.class);
+        query.setParameter("nome_estadio", nome);
+
+        try{
+            Estadio estadio = query.getSingleResult();
+            return Optional.of(estadio);
+        }catch(PersistenceException e){
+            LOGGER.error("Erro de persistência: não foi possível recuperar o estádio com o nome {} => {}", nome, e.getMessage());
+        }
+
+        return Optional.empty();
     }
 
     @Override
     public List<Estadio> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
-    }
+        String jpql = "SELECT estadio FROM Estadio estadio";
+        TypedQuery<Estadio> query = em.createQuery(jpql, Estadio.class);
 
-   
+        try{
+            return query.getResultList();
+        }catch(PersistenceException e){
+            LOGGER.error("Erro de persistência: não foi possível recuperar todos os estádios => {}", e.getMessage());
+        }
+
+        return Collections.emptyList();
+    }
 
 }
