@@ -6,9 +6,6 @@ import jakarta.persistence.*;
 
 public abstract class Pessoa {
 
-    @Id
-    @Column(name="id", nullable = false)
-    private Integer id;
 
     @Column(name="nome", nullable = false)
     private String nome;
@@ -28,15 +25,6 @@ public abstract class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(Integer id, String nome, String apelido, Date dataNascimento, String nacionalidade, String imagem) {
-        this.id = id;
-        this.nome = nome;
-        this.apelido = apelido;
-        this.dataNascimento = dataNascimento;
-        this.nacionalidade = nacionalidade;
-        this.imagem = imagem;
-    }
-
     public Pessoa(String nome, String apelido, Date dataNascimento, String nacionalidade, String imagem) {
         this.nome = nome;
         this.apelido = apelido;
@@ -44,14 +32,6 @@ public abstract class Pessoa {
         this.nacionalidade = nacionalidade;
         this.imagem = imagem;
 
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getNome() {

@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="jogador", schema="public" )
-public class Jogador{
+public class Jogador extends Pessoa{
 
     @Id
     @Column(name = "id", nullable = false)
@@ -52,14 +52,11 @@ public class Jogador{
     @JoinColumn(name = "fk_time", referencedColumnName="id_time")
     private Time time;
 
-    @OneToOne
-    @JoinColumn(name = "fk_pessoa", referencedColumnName="id_pessoa")
-    private Pessoa pessoa;
-
     public Jogador(){
     }
 
-    public Jogador(Integer id, String posicao, double altura, String peDominante, double valorMercado, String cidadeNascimento, Integer numeroCamisa, String agente, String patrocinador, String redeSocial, Date dataInicioContrato, Date dataFimContrato, Time time, Pessoa pessoa) {
+    public Jogador(Integer id, String nome, String apelido, Date dataNascimento, String nacionalidade, String imagem, String posicao, double altura, String peDominante, double valorMercado, String cidadeNascimento, Integer numeroCamisa, String agente, String patrocinador, String redeSocial, Date dataInicioContrato, Date dataFimContrato, Time time) {
+        super();
         this.idJogador = id;
         this.posicao = posicao;
         this.altura = altura;
@@ -73,10 +70,10 @@ public class Jogador{
         this.dataInicioContrato = dataInicioContrato;
         this.dataFimContrato = dataFimContrato;
         this.time = time;
-        this.pessoa = pessoa;
     }
 
-    public Jogador(String posicao, double altura, String peDominante, double valorMercado, String cidadeNascimento, Integer numeroCamisa, String agente, String patrocinador, String redeSocial, Date dataInicioContrato, Date dataFimContrato, Time time, Pessoa pessoa) {
+    public Jogador(String nome, String apelido, Date dataNascimento, String nacionalidade, String imagem, String posicao, double altura, String peDominante, double valorMercado, String cidadeNascimento, Integer numeroCamisa, String agente, String patrocinador, String redeSocial, Date dataInicioContrato, Date dataFimContrato, Time time) {
+        super();
         this.posicao = posicao;
         this.altura = altura;
         this.peDominante = peDominante;
@@ -89,7 +86,6 @@ public class Jogador{
         this.dataInicioContrato = dataInicioContrato;
         this.dataFimContrato = dataFimContrato;
         this.time = time;
-        this.pessoa = pessoa;
     }
 
     public Integer getIdJogador() {

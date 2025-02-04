@@ -43,9 +43,25 @@ public class TecnicoRequest {
     @NotNull(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "cidadeNascimento de Tecnico está invalido.")
     @JsonProperty("cidadeNascimento")
     private String cidadeNascimento;
+
+    @JsonProperty("nome")
+    private String nome;
+
+    @JsonProperty("apelido")
+    private String apelido;
+
+    @JsonProperty
+    @JsonFormat(pattern="dd/MM/yyyy")
+    private Date dataNascimento;
+
+    @JsonProperty
+    private String nacionalidade;
+
+    @JsonProperty
+    private String imagem;
              
     public Tecnico transform(Time time){
-        Tecnico objTecnico = new Tecnico(  this.id,  this.contratoInicio,  this.contratoFim,  this.cidadeNascimento,    time);
+        Tecnico objTecnico = new Tecnico(  this.id, this.nome, this.apelido, this.dataNascimento, this.nacionalidade, this.imagem,  this.contratoInicio,  this.contratoFim,  this.cidadeNascimento, time);
         return objTecnico;
     }
 
@@ -55,8 +71,48 @@ public class TecnicoRequest {
     public int getId() {
         return this.id;
     }
-           
-    public void setContratoInicio( LocalDate contratoInicio ) {
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getApelido() {
+        return apelido;
+    }
+
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getNacionalidade() {
+        return nacionalidade;
+    }
+
+    public void setNacionalidade(String nacionalidade) {
+        this.nacionalidade = nacionalidade;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    public void setContratoInicio(LocalDate contratoInicio ) {
         this.contratoInicio = contratoInicio ;
     }
     public LocalDate getContratoInicio() {

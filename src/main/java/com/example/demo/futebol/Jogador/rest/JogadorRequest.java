@@ -33,57 +33,63 @@ public class JogadorRequest {
     @JsonProperty("id")
     private int id;
 
-    @NotNull(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "posicao de Jogador está invalido.")
     @JsonProperty("posicao")
     private String posicao;
 
-    @NotNull(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "altura de Jogador está invalido.")
     @JsonProperty("altura")
     private Double altura;
 
-    @NotNull(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "peDominante de Jogador está invalido.")
     @JsonProperty("peDominante")
     private String peDominante;
 
-    @NotNull(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "valorMercado de Jogador está invalido.")
     @JsonProperty("valorMercado")
     private Double valorMercado;
 
-    @NotNull(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "cidadeNascimento de Jogador está invalido.")
     @JsonProperty("cidadeNascimento")
     private String cidadeNascimento;
 
-    @NotNull(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "numeroCamisa de Jogador está invalido.")
     @JsonProperty("numeroCamisa")
     private Integer numeroCamisa;
 
-    @NotNull(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "agente de Jogador está invalido.")
     @JsonProperty("agente")
     private String agente;
 
-    @NotNull(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "patrocinador de Jogador está invalido.")
     @JsonProperty("patrocinador")
     private String patrocinador;
 
-    @NotNull(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "redesSociais de Jogador está invalido.")
     @JsonProperty("redesSociais")
     private String redesSociais;
 
-    @NotNull(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "contratoInicio de Jogador está invalido.")
     @JsonProperty("contratoInicio")
     @JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate contratoInicio;
 
-    @NotNull(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "contratoFim de Jogador está invalido.")
     @JsonProperty("contratoFim")
     @JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate contratoFim;
-             
+
+    @JsonProperty("nome")
+    private String nome;
+
+    @JsonProperty("apelido")
+    private String apelido;
+
+    @JsonProperty
+    @JsonFormat(pattern="dd/MM/yyyy")
+    private Date dataNascimento;
+
+    @JsonProperty
+    private String nacionalidade;
+
+    @JsonProperty
+    private String imagem;
+
     public Jogador transform(Time time){
-        Jogador objJogador = new Jogador(  this.id,  this.posicao,  this.altura,  this.peDominante,  this.valorMercado,
+        Jogador jogador = new Jogador(  this.id, this.nome, this.apelido, this.dataNascimento, this.nacionalidade, this.imagem,
+                this.posicao,  this.altura,  this.peDominante,  this.valorMercado,
                 this.cidadeNascimento,  this.numeroCamisa,  this.agente,  this.patrocinador,  this.redesSociais,
                 this.contratoInicio,  this.contratoFim, time);
-        return objJogador;
+        return jogador;
     }
 
     public void setId( int id ) {
@@ -93,8 +99,47 @@ public class JogadorRequest {
         return this.id;
     }
 
-           
-    public void setPosicao( String posicao ) {
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getApelido() {
+        return apelido;
+    }
+
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getNacionalidade() {
+        return nacionalidade;
+    }
+
+    public void setNacionalidade(String nacionalidade) {
+        this.nacionalidade = nacionalidade;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    public void setPosicao(String posicao ) {
         this.posicao = posicao ;
     }
     public String getPosicao() {

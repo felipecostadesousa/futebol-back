@@ -23,32 +23,89 @@ import org.demo.Arbitro;
 public class ArbitroRequest {
 
     @NotNull(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "id de Arbitro está invalido.")
-    @NotBlank(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "id de Arbitro está em branco")
+    //@NotBlank(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "id de Arbitro está em branco")
     @JsonProperty("id")
     private int id;
 
     @NotNull(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "contratoInicio de Arbitro está invalido.")
     @NotBlank(groups = {ValidOnCreation.class, ValidOnUpdate.class}, message = "contratoInicio de Arbitro está em branco")
     @JsonProperty("contratoInicio")
-    private Integer contratoInicio;
+    private Date contratoInicio;
 
-    public Arbitro transform( Integer contratoInicio ){
-        Arbitro object = new Arbitro(  contratoInicio  );
-        return object;
+    @JsonProperty("nome")
+    private String nome;
+
+    @JsonProperty("apelido")
+    private String apelido;
+
+    @JsonProperty("dataNascimento")
+    private Date dataNascimento;
+
+    @JsonProperty("imagem")
+    private String imagem;
+
+    @JsonProperty("nacionalidade")
+    private String nacionalidade;
+
+    public Arbitro transform( Date contratoInicio, String nome, String apelido, Date dataNascimento, String nacionalidade, String imagem ){
+        Arbitro arbitro = new Arbitro(  contratoInicio, nome, apelido, dateNascimento, imagem);
+        return arbitro;
     }
 
     public void setId( int id ) {
         this.id = id ;
     }
+
     public int getId() {
         return this.id;
     }
 
-    public void setContratoInicio( Integer contratoInicio ) {
-        this.contratoInicio = contratoInicio ;
+    public Date getContratoInicio() {
+        return contratoInicio;
     }
-    public Integer getContratoInicio() {
-        return this.contratoInicio;
+
+    public void setContratoInicio(Date contratoInicio) {
+        this.contratoInicio = contratoInicio;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getApelido() {
+        return apelido;
+    }
+
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    public String getNacionalidade() {
+        return nacionalidade;
+    }
+
+    public void setNacionalidade(String nacionalidade) {
+        this.nacionalidade = nacionalidade;
     }
 
     @Override

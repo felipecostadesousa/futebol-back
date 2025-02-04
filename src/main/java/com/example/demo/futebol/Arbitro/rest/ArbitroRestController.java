@@ -50,8 +50,9 @@ private ArbitroService service;
             return ResponseEntity.badRequest().body(validations);
         }
 
-        Arbitro object = request.transform( request.getContratoInicio()  );
-        service.save(object);
+        Arbitro arbitro = request.transform( request.getContratoInicio(), request.getNome(), request.getApelido(), request.getDataNascimento(),
+                request.getNacionaliade(), request.getImagem()  );
+        service.save(arbitro);
         return ResponseEntity.ok().header("Custom-Header", "foo").body(object);
     }
 
