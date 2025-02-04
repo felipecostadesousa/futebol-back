@@ -4,11 +4,7 @@ import java.util.*;
 
 import jakarta.persistence.*;
 
-
-@Entity
-@Table(name="pessoa", schema="public" )
-public class Pessoa {
-
+public abstract class Pessoa {
 
     @Id
     @Column(name="id", nullable = false)

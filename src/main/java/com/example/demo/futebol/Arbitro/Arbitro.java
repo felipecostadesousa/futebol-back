@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="arbitro", schema = "public")
-public class Arbitro {
+public class Arbitro extends Pessoa{
 
     @Id
     @Column(name="id", nullable = false)
@@ -18,22 +18,18 @@ public class Arbitro {
     @Column(name="contrato_inicio", nullable = false)
     private Date contratoInicio;
 
-    @OneToOne
-    @JoinColumn(name = "fk_pessoa", referencedColumnName="id_pessoa")
-    private Pessoa pessoa;
-
     public Arbitro() {
     }
 
-    public Arbitro(Integer id, Date contratoInicio, Pessoa pessoa){
+    public Arbitro(Integer id, Date contratoInicio, String nome, String apelido, Date dataNascimento, String nacionalidade, String imagem){
+        super();
         this.id = id;
         this.contratoInicio = contratoInicio;
-        this.pessoa = pessoa;
     }
 
-    public Arbitro(Date contratoInicio, Pessoa pessoa){
+    public Arbitro(Date contratoInicio, String nome, String apelido, Date dataNascimento, String nacionalidade, String imagem){
+        super();
         this.contratoInicio = contratoInicio;
-        this.pessoa = pessoa;
     }
 
     public Integer getId() {
@@ -51,15 +47,5 @@ public class Arbitro {
     public void setContratoInicio(Date contratoInicio) {
         this.contratoInicio = contratoInicio;
     }
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
-
-    
 
 }
