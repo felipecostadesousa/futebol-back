@@ -1,5 +1,6 @@
 package com.example.demo.futebol.Estadio;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import com.example.demo.futebol.Localizacao.Localizacao;
@@ -15,7 +16,7 @@ public class Estadio {
     private Integer id;
 
     @Column(name="data_fundacao", nullable = false)
-    private Date dataFundacao;
+    private LocalDate dataFundacao;
 
     @Column(name="nome", nullable = false)
     private String nome;
@@ -30,7 +31,7 @@ public class Estadio {
     public Estadio() {
     }
 
-    public Estadio(Integer id, Date dataFundacao, String nome, Integer capacidadePessoas, Localizacao localizacao) {
+    public Estadio(Integer id, LocalDate dataFundacao, String nome, Integer capacidadePessoas, Localizacao localizacao) {
         this.id = id;
         this.dataFundacao = dataFundacao;
         this.nome = nome;
@@ -38,7 +39,7 @@ public class Estadio {
         this.localizacao = localizacao;
     }
 
-    public Estadio(Date dataFundacao, String nome, Integer capacidadePessoas, Localizacao localizacao) {
+    public Estadio(LocalDate dataFundacao, String nome, Integer capacidadePessoas, Localizacao localizacao) {
         this.dataFundacao = dataFundacao;
         this.nome = nome;
         this.capacidadePessoas = capacidadePessoas;
@@ -53,11 +54,11 @@ public class Estadio {
         this.id = id;
     }
 
-    public Date getDataFundacao() {
+    public LocalDate getDataFundacao() {
         return dataFundacao;
     }
 
-    public void setDataFundacao(Date dataFundacao) {
+    public void setDataFundacao(LocalDate dataFundacao) {
         this.dataFundacao = dataFundacao;
     }
 

@@ -1,5 +1,6 @@
 package com.example.demo.futebol.Jogador;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import com.example.demo.futebol.Pessoa.Pessoa;
@@ -43,10 +44,10 @@ public class Jogador extends Pessoa{
     private String redeSocial;
 
     @Column(name = "data_inicio_contrato", nullable = false)
-    private Date dataInicioContrato;
+    private LocalDate dataInicioContrato;
 
     @Column(name = "data_fim_contrato", nullable = false)
-    private Date dataFimContrato;
+    private LocalDate dataFimContrato;
 
     @OneToOne
     @JoinColumn(name = "fk_time", referencedColumnName="id_time")
@@ -55,7 +56,7 @@ public class Jogador extends Pessoa{
     public Jogador(){
     }
 
-    public Jogador(Integer id, String nome, String apelido, Date dataNascimento, String nacionalidade, String imagem, String posicao, double altura, String peDominante, double valorMercado, String cidadeNascimento, Integer numeroCamisa, String agente, String patrocinador, String redeSocial, Date dataInicioContrato, Date dataFimContrato, Time time) {
+    public Jogador(Integer id, String nome, String apelido, LocalDate dataNascimento, String nacionalidade, String imagem, String posicao, double altura, String peDominante, double valorMercado, String cidadeNascimento, Integer numeroCamisa, String agente, String patrocinador, String redeSocial, LocalDate dataInicioContrato, LocalDate dataFimContrato, Time time) {
         super();
         this.idJogador = id;
         this.posicao = posicao;
@@ -72,7 +73,7 @@ public class Jogador extends Pessoa{
         this.time = time;
     }
 
-    public Jogador(String nome, String apelido, Date dataNascimento, String nacionalidade, String imagem, String posicao, double altura, String peDominante, double valorMercado, String cidadeNascimento, Integer numeroCamisa, String agente, String patrocinador, String redeSocial, Date dataInicioContrato, Date dataFimContrato, Time time) {
+    public Jogador(String nome, String apelido, LocalDate dataNascimento, String nacionalidade, String imagem, String posicao, double altura, String peDominante, double valorMercado, String cidadeNascimento, Integer numeroCamisa, String agente, String patrocinador, String redeSocial, LocalDate dataInicioContrato, LocalDate dataFimContrato, Time time) {
         super();
         this.posicao = posicao;
         this.altura = altura;
@@ -168,19 +169,19 @@ public class Jogador extends Pessoa{
         this.redeSocial = redeSocial;
     }
 
-    public Date getDataInicioContrato() {
+    public LocalDate getDataInicioContrato() {
         return dataInicioContrato;
     }
 
-    public void setDataInicioContrato(Date dataInicioContrato) {
+    public void setDataInicioContrato(LocalDate dataInicioContrato) {
         this.dataInicioContrato = dataInicioContrato;
     }
 
-    public Date getDataFimContrato() {
+    public LocalDate getDataFimContrato() {
         return dataFimContrato;
     }
 
-    public void setDataFimContrato(Date dataFimContrato) {
+    public void setDataFimContrato(LocalDate dataFimContrato) {
         this.dataFimContrato = dataFimContrato;
     }
 

@@ -1,5 +1,6 @@
 package com.example.demo.futebol.Pessoa;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import jakarta.persistence.*;
@@ -14,7 +15,7 @@ public abstract class Pessoa {
     private String apelido;
 
     @Column(name="data_nascimento", nullable = false)
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     @Column(name="nacionalidade", nullable = false)
     private String nacionalidade;
@@ -25,7 +26,7 @@ public abstract class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String apelido, Date dataNascimento, String nacionalidade, String imagem) {
+    public Pessoa(String nome, String apelido, LocalDate dataNascimento, String nacionalidade, String imagem) {
         this.nome = nome;
         this.apelido = apelido;
         this.dataNascimento = dataNascimento;
@@ -50,11 +51,11 @@ public abstract class Pessoa {
         this.apelido = apelido;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

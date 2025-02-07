@@ -1,6 +1,6 @@
 package com.example.demo.futebol.Arbitro;
 
-import java.util.*;
+import java.time.LocalDate;
 
 import com.example.demo.futebol.Pessoa.Pessoa;
 
@@ -16,18 +16,18 @@ public class Arbitro extends Pessoa{
     private Integer id;
 
     @Column(name="contrato_inicio", nullable = false)
-    private Date contratoInicio;
+    private LocalDate contratoInicio;
 
     public Arbitro() {
     }
 
-    public Arbitro(Integer id, Date contratoInicio, String nome, String apelido, Date dataNascimento, String nacionalidade, String imagem){
+    public Arbitro(Integer id, LocalDate contratoInicio, String nome, String apelido, LocalDate dataNascimento, String nacionalidade, String imagem){
         super();
         this.id = id;
         this.contratoInicio = contratoInicio;
     }
 
-    public Arbitro(Date contratoInicio, String nome, String apelido, Date dataNascimento, String nacionalidade, String imagem){
+    public Arbitro(LocalDate contratoInicio, String nome, String apelido, LocalDate dataNascimento, String nacionalidade, String imagem){
         super();
         this.contratoInicio = contratoInicio;
     }
@@ -40,11 +40,11 @@ public class Arbitro extends Pessoa{
         this.id = id;
     }
 
-    public Date getContratoInicio() {
+    public LocalDate getContratoInicio() {
         return contratoInicio;
     }
 
-    public void setContratoInicio(Date contratoInicio) {
+    public void setContratoInicio(LocalDate contratoInicio) {
         this.contratoInicio = contratoInicio;
     }
 
