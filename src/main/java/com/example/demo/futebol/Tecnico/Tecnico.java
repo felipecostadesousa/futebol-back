@@ -32,8 +32,8 @@ public class Tecnico extends Pessoa {
     }
 
     public Tecnico(Integer id, String nome, String apelido, Date dataNascimento, String nacionalidade, String imagem, Date contratoInicio, Date contratoFim, String cidadeNascimento, Time time) {
-        this.id = id;
         super();
+        this.id = id;
         this.contratoInicio = contratoInicio;
         this.contratoFim = contratoFim;
         this.cidadeNascimento = cidadeNascimento;
@@ -87,15 +87,6 @@ public class Tecnico extends Pessoa {
     public void setTime(Time time) {
         this.time = time;
     }
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
-
     
 
 }
