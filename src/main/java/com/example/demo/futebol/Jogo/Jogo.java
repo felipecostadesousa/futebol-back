@@ -58,6 +58,10 @@ public class Jogo {
         this.competicao = competicao;
     }
 
+    public Jogo( Estadio estadio){
+        this.estadio = estadio;
+    }
+
     public Integer getId() {
         return id;
     }

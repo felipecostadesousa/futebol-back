@@ -35,6 +35,10 @@ public class Competicao {
         this.confederacao = confederacao;
     }
 
+    public void transform(CompeticaoRequest request) {
+       Competicao competicao = new Competicao(request.getNome(), request.getAno(), request.getConfederacao());
+    }
+
     public Integer getId() {
         return id;
     }
@@ -66,5 +70,7 @@ public class Competicao {
     public void setConfederacao(String confederacao) {
         this.confederacao = confederacao;
     }
+
+   
 
 }

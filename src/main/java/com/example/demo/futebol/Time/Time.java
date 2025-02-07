@@ -1,7 +1,6 @@
 package com.example.demo.futebol.Time;
 
 import java.time.LocalDate;
-import java.util.*;
 
 import com.example.demo.futebol.Estadio.Estadio;
 import com.example.demo.futebol.Localizacao.Localizacao;
@@ -76,6 +75,19 @@ public class Time {
         this.qtdJogadoresSelecao = qtdJogadoresSelecao;
         this.valorMercado = valorMercado;
         this.estadio = estadio;
+        this.localizacao = localizacao;
+    }
+
+    public Time(Integer id, byte[] escudo, String nome, String apelido, LocalDate dataFundacao, String site, Integer qtdSocios, Integer qtdJogadoresSelecao, Double valorMercado, Localizacao localizacao){
+        this.id = id;
+        this.escudo = escudo;
+        this.nome = nome;
+        this.apelido = apelido;
+        this.dataFundacao = dataFundacao;
+        this.site = site;
+        this.qtdSocios = qtdSocios;
+        this.qtdJogadoresSelecao = qtdJogadoresSelecao;
+        this.valorMercado = valorMercado;
         this.localizacao = localizacao;
     }
 

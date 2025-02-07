@@ -21,6 +21,11 @@ public class Titulo {
         this.nome = nome;
     }
 
+    public Titulo transform(TituloRequest request) {
+        Titulo titulo = new Titulo (request.getId(), request.getNome());
+        return titulo;
+    }
+
     public Titulo(String nome) {
         this.nome = nome;
     }

@@ -39,6 +39,11 @@ public class JogoRequest {
         Jogo objJogo = new Jogo(  this.id,  this.dataJogo,  this.golsTimeCasa,  this.golsTimeVisitante, estadio, arbitro, competicao);
         return objJogo;
     }
+
+    public Jogo transform(Estadio estadio){
+        Jogo objJogo = new Jogo(estadio);
+        return objJogo;
+    }
      
     public void setId( Integer id ) {
         this.id = id ;

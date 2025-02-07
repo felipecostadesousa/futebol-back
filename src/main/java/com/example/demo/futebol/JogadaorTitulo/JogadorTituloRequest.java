@@ -25,6 +25,11 @@ public class JogadorTituloRequest {
         JogadorTitulo objJogadorTitulo = new JogadorTitulo(this.id, jogador, titulo);
         return objJogadorTitulo;
     }
+
+    public JogadorTitulo transform(Titulo titulo){
+        JogadorTitulo objJogadorTitulo = new JogadorTitulo(titulo);
+        return objJogadorTitulo;
+    }
      
     public void setId( Integer id ) {
         this.id = id ;
@@ -75,5 +80,6 @@ public class JogadorTituloRequest {
     public String logString() {
         return ("Adicione uma implmenentação adequada.");
     }
+
 
 }

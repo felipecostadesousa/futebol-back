@@ -38,6 +38,17 @@ public class Localizacao {
         this.estado = estado;
         this.cidade = cidade;
     }
+
+    public Localizacao transform(LocalizacaoRequest request) {
+        Localizacao localizacao = new Localizacao(request.getId(), request.getPais(), request.getRegiao(), request.getEstado(), request.getCidade() );
+        return localizacao;
+    }
+
+    public Localizacao transform(Localizacao localizacao) {
+        Localizacao localizacaoFinal = new Localizacao(localizacao.getId(), localizacao.getPais(), localizacao.getRegiao(), localizacao.getEstado(), localizacao.getCidade() );
+        return localizacaoFinal;
+    }
+
     public Integer getId() {
         return id;
     }

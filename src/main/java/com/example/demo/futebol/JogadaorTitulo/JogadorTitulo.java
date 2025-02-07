@@ -35,6 +35,10 @@ public class JogadorTitulo {
         this.titulo = titulo;
     }
 
+    public JogadorTitulo(Titulo titulo){
+        this.titulo = titulo;
+    }
+
     public Integer getId() {
         return id;
     }

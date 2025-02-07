@@ -34,6 +34,11 @@ public class JogoTime {
         this.jogo = jogo;
     }
 
+    public JogoTime(Integer id, Time time){
+        this.id = id;
+        this.time = time;
+    }
+
     public Integer getId() {
         return id;
     }

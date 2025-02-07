@@ -1,19 +1,24 @@
 com\example\demo\futebol\Arbitro\ArbitroRepository.class
 com\example\demo\futebol\Jogador\JogadorDao.class
 com\example\demo\futebol\Arbitro\Arbitro.class
+com\example\demo\futebol\Localizacao\LocalizacaoController.class
 com\example\demo\futebol\Estatistica\EstatisticaRepository.class
 com\example\demo\futebol\Competicao\Competicao.class
 com\example\demo\futebol\Jogo\JogoRepository.class
-com\example\demo\futebol\Titulo\TituloRepository.class
+com\example\demo\futebol\Jogo\JogoController.class
 com\example\demo\futebol\Estatistica\EstatisticaDao.class
 com\example\demo\futebol\JogoTime\JogoTime.class
 com\example\demo\futebol\Estadio\Estadio.class
 com\example\demo\futebol\Localizacao\LocalizacaoRepository.class
+com\example\demo\futebol\Arbitro\ArbitroController.class
+com\example\demo\futebol\Jogador\JogadorController.class
 com\example\demo\futebol\Estadio\EstadioService.class
 com\example\demo\futebol\Competicao\CompeticaoRepository.class
+com\example\demo\futebol\Estadio\EstadioController.class
 com\example\demo\futebol\Localizacao\LocalizacaoService.class
 com\example\demo\futebol\JogadaorTitulo\JogadorTituloService.class
 com\example\demo\futebol\Localizacao\Localizacao.class
+com\example\demo\futebol\Estatistica\EstatisticaController.class
 com\example\demo\futebol\JogoTime\JogoTimeRequest.class
 com\example\demo\futebol\Jogador\JogadorService.class
 com\example\demo\futebol\Titulo\TituloDao.class
@@ -21,8 +26,8 @@ com\example\demo\futebol\JogadaorTitulo\JogadorTitulo.class
 com\example\demo\futebol\Estatistica\EstatisticaRequest.class
 com\example\demo\futebol\Competicao\CompeticaoDao.class
 com\example\demo\futebol\Tecnico\TecnicoRepository.class
-com\example\demo\futebol\Time\TimeRequest.class
 com\example\demo\futebol\Arbitro\ArbitroDao.class
+com\example\demo\futebol\Tecnico\TecnicoController.class
 com\example\demo\futebol\Jogador\JogadorRepository.class
 com\example\demo\futebol\Estatistica\Estatistica.class
 com\example\demo\futebol\JogadaorTitulo\JogadorTituloDao.class
@@ -33,6 +38,7 @@ com\example\demo\futebol\JogadaorTitulo\JogadorTituloRepository.class
 com\example\demo\futebol\Estadio\EstadioRepository.class
 com\example\demo\futebol\Jogo\Jogo.class
 com\example\demo\futebol\JogoTime\JogoTimeDao.class
+com\example\demo\futebol\Competicao\CompeticaoController.class
 com\example\demo\futebol\Estadio\EstadioDao.class
 com\example\demo\futebol\JogoTime\JogoTimeRepository.class
 com\example\demo\futebol\Localizacao\LocalizacaoDao.class
@@ -51,6 +57,8 @@ com\example\demo\futebol\Tecnico\Tecnico.class
 com\example\demo\futebol\Time\TimeDao.class
 com\example\demo\futebol\Time\TimeService.class
 com\example\demo\futebol\Jogador\Jogador.class
+com\example\demo\futebol\JogoTime\JogoTimeController.class
+com\example\demo\futebol\JogadaorTitulo\JogadorTituloController.class
 com\example\demo\futebol\Jogador\JogadorRequest.class
 com\example\demo\futebol\Estatistica\EstatisticaService.class
 com\example\demo\futebol\Titulo\Titulo.class
@@ -59,4 +67,3 @@ com\example\demo\futebol\Tecnico\TecnicoDao.class
 com\example\demo\futebol\Arbitro\ArbitroService.class
 com\example\demo\futebol\Tecnico\TecnicoRequest.class
 com\example\demo\futebol\Time\Time.class
-com\example\demo\futebol\Time\TimeRepository.class

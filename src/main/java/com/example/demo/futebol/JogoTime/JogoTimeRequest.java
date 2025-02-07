@@ -26,6 +26,11 @@ public class JogoTimeRequest {
         return jogoTime;
     }
 
+    public JogoTime transform(Time time){
+        JogoTime jogoTime = new JogoTime(this.id, time);
+        return jogoTime;
+    }
+
     public void setId( Integer id ) {
         this.id = id ;
     }
