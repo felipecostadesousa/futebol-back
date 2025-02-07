@@ -23,6 +23,21 @@ public class ArbitroRequest {
     @JsonProperty("contratoInicio")
     private LocalDate contratoInicio; 
 
+    @JsonProperty("nome")
+    private String nome; 
+
+    @JsonProperty("apelido")
+    private String apelido; 
+
+    @JsonProperty("dataNascimento")
+    private LocalDate dataNascimento; 
+
+    @JsonProperty("nacionalidade")
+    private String nacionalidade; 
+
+    @JsonProperty("imagem")
+    private String imagem; 
+
     public Arbitro transform( LocalDate contratoInicio, String nome, String apelido, LocalDate dataNascimento, String nacionalidade, String imagem  ){
         Arbitro arbitro = new Arbitro(contratoInicio, nome, apelido, dataNascimento, nacionalidade, imagem);
         return arbitro;
@@ -35,19 +50,68 @@ public class ArbitroRequest {
     public Integer getId() {
         return this.id;
     }
-           
-    public void setContratoInicio( Integer contratoInicio ) {
-        this.contratoInicio = contratoInicio ;
+
+    public void setContratoInicio( LocalDate contratoInicio ) {
+        this.contratoInicio = contratoInicio;
     }
-    public Integer getContratoInicio() {
+    public LocalDate getContratoInicio() {
         return this.contratoInicio;
     }
-
       
+    public String getNome() {
+        return nome;
+    }
+
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+
+    public String getApelido() {
+        return apelido;
+    }
+
+
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
+    }
+
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+
+    public String getNacionalidade() {
+        return nacionalidade;
+    }
+
+
+    public void setNacionalidade(String nacionalidade) {
+        this.nacionalidade = nacionalidade;
+    }
+
+
+    public String getImagem() {
+        return imagem;
+    }
+
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+
     @Override
     public String toString() {
         return "ArbitroDTO [id=" + id + ",   contratoInicio=" + contratoInicio + "]";
-      }
+    }
 
                       
     @Override

@@ -1,5 +1,6 @@
 package com.example.demo.futebol.Time;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import com.example.demo.futebol.Estadio.Estadio;
@@ -25,7 +26,7 @@ public class Time {
     private String apelido;
 
     @Column(name="data_fundacao", nullable = false)
-    private Date dataFundacao;
+    private LocalDate dataFundacao;
 
     @Column(name="site_time_url", nullable = false)
     private String site;
@@ -51,7 +52,7 @@ public class Time {
 
     }
 
-    public Time(Integer id, byte[] escudo, String nome, String apelido, Date dataFundacao, String site, Integer qtdSocios, Integer qtdJogadoresSelecao, Double valorMercado, Estadio estadio, Localizacao localizacao){
+    public Time(Integer id, byte[] escudo, String nome, String apelido, LocalDate dataFundacao, String site, Integer qtdSocios, Integer qtdJogadoresSelecao, Double valorMercado, Estadio estadio, Localizacao localizacao){
         this.id = id;
         this.escudo = escudo;
         this.nome = nome;
@@ -65,7 +66,7 @@ public class Time {
         this.localizacao = localizacao;
     }
 
-    public Time(byte[] escudo, String nome, String apelido, Date dataFundacao, String site, Integer qtdSocios, Integer qtdJogadoresSelecao, Double valorMercado, Estadio estadio, Localizacao localizacao){
+    public Time(byte[] escudo, String nome, String apelido, LocalDate dataFundacao, String site, Integer qtdSocios, Integer qtdJogadoresSelecao, Double valorMercado, Estadio estadio, Localizacao localizacao){
         this.escudo = escudo;
         this.nome = nome;
         this.apelido = apelido;
@@ -110,11 +111,11 @@ public class Time {
         this.apelido = apelido;
     }
 
-    public Date getDataFundacao() {
+    public LocalDate getDataFundacao() {
         return dataFundacao;
     }
 
-    public void setDataFundacao(Date dataFundacao) {
+    public void setDataFundacao(LocalDate dataFundacao) {
         this.dataFundacao = dataFundacao;
     }
 

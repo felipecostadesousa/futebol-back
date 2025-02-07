@@ -1,7 +1,6 @@
 package com.example.demo.futebol.Pessoa;
 
 import java.time.LocalDate;
-import java.util.*;
 
 import jakarta.persistence.*;
 

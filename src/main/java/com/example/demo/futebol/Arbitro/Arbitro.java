@@ -32,6 +32,10 @@ public class Arbitro extends Pessoa{
         this.contratoInicio = contratoInicio;
     }
 
+    public void transform(ArbitroRequest request) {
+        Arbitro arbitro = new Arbitro(request.getContratoInicio(), request.getNome(), request.getApelido(), request.getDataNascimento(), request.getNacionalidade(), request.getImagem());
+    }
+
     public Integer getId() {
         return id;
     }
@@ -47,5 +51,7 @@ public class Arbitro extends Pessoa{
     public void setContratoInicio(LocalDate contratoInicio) {
         this.contratoInicio = contratoInicio;
     }
+
+   
 
 }

@@ -1,7 +1,7 @@
 package com.example.demo.futebol.Jogo;
 
 import jakarta.persistence.*;
-import java.util.*;
+import java.time.LocalDate;
 
 import com.example.demo.futebol.Arbitro.Arbitro;
 import com.example.demo.futebol.Competicao.Competicao;
@@ -16,7 +16,7 @@ public class Jogo {
     private Integer id;
 
     @Column(name="data_jogo", nullable = false)  
-    private Date data;
+    private LocalDate data;
 
     @Column(name="gols_time_casa", nullable = false)
     private Integer golsCasa;
@@ -39,7 +39,7 @@ public class Jogo {
     public Jogo() {
     }
 
-    public Jogo(Integer id, Date data, Integer golsCasa, Integer golsVisitante, Estadio estadio, Arbitro arbitro, Competicao competicao){
+    public Jogo(Integer id, LocalDate data, Integer golsCasa, Integer golsVisitante, Estadio estadio, Arbitro arbitro, Competicao competicao){
         this.id = id;
         this.data = data;
         this.golsCasa = golsCasa;
@@ -49,7 +49,7 @@ public class Jogo {
         this.competicao = competicao;
     }
 
-    public Jogo(Date data, Integer golsCasa, Integer golsVisitante, Estadio estadio, Arbitro arbitro, Competicao competicao){
+    public Jogo(LocalDate data, Integer golsCasa, Integer golsVisitante, Estadio estadio, Arbitro arbitro, Competicao competicao){
         this.data = data;
         this.golsCasa = golsCasa;
         this.golsVisitante = golsVisitante;
@@ -66,11 +66,11 @@ public class Jogo {
         this.id = id;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

@@ -1,8 +1,6 @@
 package com.example.demo.futebol.Jogador;
 
 import java.time.LocalDate;
-import java.util.*;
-
 import com.example.demo.futebol.Pessoa.Pessoa;
 import com.example.demo.futebol.Time.Time;
 

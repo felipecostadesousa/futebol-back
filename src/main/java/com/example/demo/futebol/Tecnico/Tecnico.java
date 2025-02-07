@@ -1,6 +1,6 @@
 package com.example.demo.futebol.Tecnico;
 
-import java.util.*;
+import java.time.LocalDate;
 
 import com.example.demo.futebol.Pessoa.Pessoa;
 import com.example.demo.futebol.Time.Time;
@@ -16,10 +16,10 @@ public class Tecnico extends Pessoa {
     private Integer id;
 
     @Column(name="contrato_inicio", nullable = false)
-    private Date contratoInicio;
+    private LocalDate contratoInicio;
 
     @Column(name="contrato_fim", nullable = false)
-    private Date contratoFim;
+    private LocalDate contratoFim;
 
     @Column(name="cidade_nascimento", nullable = false)
     private String cidadeNascimento;
@@ -31,7 +31,7 @@ public class Tecnico extends Pessoa {
     public Tecnico() {
     }
 
-    public Tecnico(Integer id, String nome, String apelido, Date dataNascimento, String nacionalidade, String imagem, Date contratoInicio, Date contratoFim, String cidadeNascimento, Time time) {
+    public Tecnico(Integer id, String nome, String apelido, LocalDate dataNascimento, String nacionalidade, String imagem, LocalDate contratoInicio, LocalDate contratoFim, String cidadeNascimento, Time time) {
         super();
         this.id = id;
         this.contratoInicio = contratoInicio;
@@ -40,7 +40,7 @@ public class Tecnico extends Pessoa {
         this.time = time;
     }
 
-    public Tecnico(String nome, String apelido, Date dataNascimento, String nacionalidade, String imagem, Date contratoInicio, Date contratoFim, String cidadeNascimento, Time time) {
+    public Tecnico(String nome, String apelido, LocalDate dataNascimento, String nacionalidade, String imagem, LocalDate contratoInicio, LocalDate contratoFim, String cidadeNascimento, Time time) {
         super();
         this.contratoInicio = contratoInicio;
         this.contratoFim = contratoFim;
@@ -56,19 +56,19 @@ public class Tecnico extends Pessoa {
         this.id = id;
     }
 
-    public Date getContratoInicio() {
+    public LocalDate getContratoInicio() {
         return contratoInicio;
     }
 
-    public void setContratoInicio(Date contratoInicio) {
+    public void setContratoInicio(LocalDate contratoInicio) {
         this.contratoInicio = contratoInicio;
     }
 
-    public Date getContratoFim() {
+    public LocalDate getContratoFim() {
         return contratoFim;
     }
 
-    public void setContratoFim(Date contratoFim) {
+    public void setContratoFim(LocalDate contratoFim) {
         this.contratoFim = contratoFim;
     }
 
