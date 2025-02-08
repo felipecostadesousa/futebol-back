@@ -33,7 +33,7 @@ public class TecnicoController {
     }
 
     @PostMapping(value="/{id_time}/Tecnico", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-        public ResponseEntity<?> save(@PathVariable("id_time") Integer idTime, @RequestBody TecnicoRequest request){
+    public ResponseEntity<?> save(@PathVariable("id_time") Integer idTime, @RequestBody TecnicoRequest request){
         LOGGER.info("Iniciando criação de um novo Tecnico para Time com ID: {}", idTime);
         if (idTime == null){
             return ResponseEntity.badRequest().body("idTime está inválido");
@@ -105,7 +105,6 @@ public class TecnicoController {
             return ResponseEntity.notFound().header("not-found-id", String.valueOf(request.getId())).build();
         }
     }
-
 
     @DeleteMapping(value="/{id_time}/Tecnico/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> delete(@PathVariable("id_time") Integer idTime, @PathVariable("id") Integer id) {

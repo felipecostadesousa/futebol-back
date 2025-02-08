@@ -40,11 +40,11 @@ public class Time {
     private Double valorMercado;
 
     @OneToOne
-    @JoinColumn(name = "fk_estadio", referencedColumnName="id_estadio")
+    @JoinColumn(name = "id_estadio", referencedColumnName="id")
     private Estadio estadio;
 
     @OneToOne
-    @JoinColumn(name = "fk_localizacao", referencedColumnName="id_localizacao")
+    @JoinColumn(name = "id_localizacao", referencedColumnName="id")
     private Localizacao localizacao;
 
     public Time(){

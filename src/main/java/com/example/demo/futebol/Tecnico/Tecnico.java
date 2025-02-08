@@ -25,7 +25,7 @@ public class Tecnico extends Pessoa {
     private String cidadeNascimento;
 
     @OneToOne
-    @JoinColumn(name = "fk_time", referencedColumnName="id_time")
+    @JoinColumn(name = "id_time", referencedColumnName="id")
     private Time time;
 
     public Tecnico() {

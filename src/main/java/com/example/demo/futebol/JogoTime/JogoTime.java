@@ -13,11 +13,11 @@ public class JogoTime {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="fk_time", referencedColumnName = "id_time")
+    @JoinColumn(name="id_time", referencedColumnName = "id")
     private Time time;
 
     @ManyToOne
-    @JoinColumn(name="fk_jogo", referencedColumnName = "id_jogo")
+    @JoinColumn(name="id_jogo", referencedColumnName = "id")
     private Jogo jogo;
 
     public JogoTime() {

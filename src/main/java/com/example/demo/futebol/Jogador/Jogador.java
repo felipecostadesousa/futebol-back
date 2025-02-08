@@ -48,7 +48,7 @@ public class Jogador extends Pessoa{
     private LocalDate dataFimContrato;
 
     @OneToOne
-    @JoinColumn(name = "fk_time", referencedColumnName="id_time")
+    @JoinColumn(name = "id_time", referencedColumnName="id")
     private Time time;
 
     public Jogador(){

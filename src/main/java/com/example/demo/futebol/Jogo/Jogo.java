@@ -25,15 +25,15 @@ public class Jogo {
     private Integer golsVisitante;
     
     @OneToOne
-    @JoinColumn(name="fk_estadio", referencedColumnName = "id_estadio")
+    @JoinColumn(name="id_estadio", referencedColumnName = "id")
     private Estadio estadio;
 
     @OneToOne
-    @JoinColumn(name="fk_arbitro", referencedColumnName = "id_arbitro")
+    @JoinColumn(name="id_arbitro", referencedColumnName = "id")
     private Arbitro arbitro;
 
     @ManyToOne
-    @JoinColumn(name="fk_competicao", referencedColumnName = "id_competicao")
+    @JoinColumn(name="id_competicao", referencedColumnName = "id")
     private Competicao competicao;
 
     public Jogo() {

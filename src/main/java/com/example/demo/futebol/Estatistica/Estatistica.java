@@ -22,7 +22,7 @@ public class Estatistica {
     private Integer assistencias;
 
     @OneToOne
-    @JoinColumn(name="fk_jogador", referencedColumnName = "id_jogador")
+    @JoinColumn(name="id_jogador", referencedColumnName = "id")
     private Jogador jogador;
 
     public Estatistica(){
