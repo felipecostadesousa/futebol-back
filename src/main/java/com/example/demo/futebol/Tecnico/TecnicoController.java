@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -54,18 +55,25 @@ public class TecnicoController {
 
     }
 
-    @GetMapping(value="/{id_time}/Tecnico", produces= {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> findAll(@PathVariable("id_time") Integer idTime) {
-        LOGGER.info("Buscando lista de Tecnico");
+    @GetMapping(value="/Tecnico", produces= {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> findAll() {
+        try {
+            LOGGER.info("Buscando lista de Tecnico");
 
-        if (idTime == null){
-            return ResponseEntity.badRequest().body("idTime está inválido");
+            List<Tecnico> list = service.findAll();
+            
+            if (list == null || list.isEmpty()) {
+                return ResponseEntity.noContent().build();  // Retorna 204 se não houver técnicos
+            }
+            
+            LOGGER.info("Tecnico encontrados: {}", list.size());
+            return ResponseEntity.ok().header("Custom-Header", "foo").body(list);
+        } catch (Exception e) {
+            LOGGER.error("Erro ao buscar lista de Tecnico", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao buscar técnicos");
         }
-
-        List<Tecnico> list = service.findAll();
-        LOGGER.info("Tecnico encontrados: {}", list.size());
-        return ResponseEntity.ok().header("Custom-Header", "foo").body(list);
     }
+
 
     @GetMapping(value="/{id_time}/Tecnico/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> findById(@PathVariable("id_time") Integer idTime, @PathVariable("id") Integer id){

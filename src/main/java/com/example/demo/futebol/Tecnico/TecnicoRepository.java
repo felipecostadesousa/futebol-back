@@ -8,15 +8,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.futebol.Time.TimeRepository;
+
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceException;
 import jakarta.persistence.TypedQuery;
 
 @Repository
 public class TecnicoRepository implements TecnicoDao{
 
+    @PersistenceContext
     private EntityManager em;
-    private static final Logger LOGGER = LoggerFactory.getLogger(TecnicoRepository.class.getName());
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(TimeRepository.class.getName());
 
     @Override
     public void save(Tecnico tecnico) {
@@ -126,13 +131,14 @@ public class TecnicoRepository implements TecnicoDao{
 
         TypedQuery<Tecnico> query = em.createQuery(jpql, Tecnico.class);
 
-        try{
+        try {
             return query.getResultList();
-        }catch(PersistenceException e){
-            LOGGER.error("Erro de persistência: não foi possível recuperar técnicos => {}", e.getMessage());
+        } catch (PersistenceException e) {
+            LOGGER.error("Erro de persistência: não foi possível recuperar técnicos", e);
+            // Opcional: lançar uma exceção customizada caso precise propagar o erro
+            throw new RuntimeException("Erro ao buscar técnicos", e);  
         }
-
-        return Collections.emptyList();
     }
+
 
 }

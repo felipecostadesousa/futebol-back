@@ -1,22 +1,35 @@
 package com.example.demo.futebol.Jogador;
 
 import java.time.LocalDate;
-import com.example.demo.futebol.Pessoa.Pessoa;
 import com.example.demo.futebol.Time.Time;
-
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="jogador", schema="public" )
-public class Jogador extends Pessoa{
+@Table(name = "jogador", schema = "public")
+public class Jogador {
 
     @Id
     @Column(name = "id", nullable = false)
     private Integer idJogador;
 
+    @Column(name = "nome", nullable = false)
+    private String nome;
+
+    @Column(name = "apelido", nullable = false)
+    private String apelido;
+
+    @Column(name = "data_nascimento", nullable = false)
+    private LocalDate dataNascimento;
+
+    @Column(name = "nacionalidade", nullable = false)
+    private String nacionalidade;
+
+    @Column(name = "imagemurl", nullable = false)
+    private String imagemUrl;
+
     @Column(name = "posicao", nullable = false)
     private String posicao;
-    
+
     @Column(name = "altura", nullable = false)
     private double altura;
 
@@ -48,15 +61,22 @@ public class Jogador extends Pessoa{
     private LocalDate dataFimContrato;
 
     @OneToOne
-    @JoinColumn(name = "id_time", referencedColumnName="id")
+    @JoinColumn(name = "id_time", referencedColumnName = "id")
     private Time time;
 
-    public Jogador(){
+    public Jogador() {
     }
 
-    public Jogador(Integer id, String nome, String apelido, LocalDate dataNascimento, String nacionalidade, String imagem, String posicao, double altura, String peDominante, double valorMercado, String cidadeNascimento, Integer numeroCamisa, String agente, String patrocinador, String redeSocial, LocalDate dataInicioContrato, LocalDate dataFimContrato, Time time) {
-        super();
-        this.idJogador = id;
+    public Jogador(Integer idJogador, String nome, String apelido, LocalDate dataNascimento, String nacionalidade, 
+                   String imagemUrl, String posicao, double altura, String peDominante, double valorMercado, 
+                   String cidadeNascimento, Integer numeroCamisa, String agente, String patrocinador, 
+                   String redeSocial, LocalDate dataInicioContrato, LocalDate dataFimContrato, Time time) {
+        this.idJogador = idJogador;
+        this.nome = nome;
+        this.apelido = apelido;
+        this.dataNascimento = dataNascimento;
+        this.nacionalidade = nacionalidade;
+        this.imagemUrl = imagemUrl;
         this.posicao = posicao;
         this.altura = altura;
         this.peDominante = peDominante;
@@ -71,21 +91,7 @@ public class Jogador extends Pessoa{
         this.time = time;
     }
 
-    public Jogador(String nome, String apelido, LocalDate dataNascimento, String nacionalidade, String imagem, String posicao, double altura, String peDominante, double valorMercado, String cidadeNascimento, Integer numeroCamisa, String agente, String patrocinador, String redeSocial, LocalDate dataInicioContrato, LocalDate dataFimContrato, Time time) {
-        super();
-        this.posicao = posicao;
-        this.altura = altura;
-        this.peDominante = peDominante;
-        this.valorMercado = valorMercado;
-        this.cidadeNascimento = cidadeNascimento;
-        this.numeroCamisa = numeroCamisa;
-        this.agente = agente;
-        this.patrocinador = patrocinador;
-        this.redeSocial = redeSocial;
-        this.dataInicioContrato = dataInicioContrato;
-        this.dataFimContrato = dataFimContrato;
-        this.time = time;
-    }
+    // Getters and setters
 
     public Integer getIdJogador() {
         return idJogador;
@@ -93,6 +99,46 @@ public class Jogador extends Pessoa{
 
     public void setIdJogador(Integer idJogador) {
         this.idJogador = idJogador;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getApelido() {
+        return apelido;
+    }
+
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getNacionalidade() {
+        return nacionalidade;
+    }
+
+    public void setNacionalidade(String nacionalidade) {
+        this.nacionalidade = nacionalidade;
+    }
+
+    public String getImagemUrl() {
+        return imagemUrl;
+    }
+
+    public void setImagemUrl(String imagemUrl) {
+        this.imagemUrl = imagemUrl;
     }
 
     public String getPosicao() {
@@ -190,5 +236,4 @@ public class Jogador extends Pessoa{
     public void setTime(Time time) {
         this.time = time;
     }
-
 }

@@ -2,14 +2,11 @@ package com.example.demo.futebol.Arbitro;
 
 import java.time.LocalDate;
 
-import com.example.demo.futebol.Pessoa.Pessoa;
-
 import jakarta.persistence.*;
-
 
 @Entity
 @Table(name="arbitro", schema = "public")
-public class Arbitro extends Pessoa{
+public class Arbitro{
 
     @Id
     @Column(name="id", nullable = false)

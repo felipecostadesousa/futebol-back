@@ -1,15 +1,13 @@
 package com.example.demo.futebol.Tecnico;
 
 import java.time.LocalDate;
-
-import com.example.demo.futebol.Pessoa.Pessoa;
 import com.example.demo.futebol.Time.Time;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="tecnico", schema = "public")
-public class Tecnico extends Pessoa {
+public class Tecnico {
 
     @Id
     @Column(name="id", nullable = false)

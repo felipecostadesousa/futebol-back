@@ -9,13 +9,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceException;
 import jakarta.persistence.TypedQuery;
 
 @Repository
 public class TimeRepository implements TimeDao{
 
+    @PersistenceContext
     private EntityManager em;
+    
     private static final Logger LOGGER = LoggerFactory.getLogger(TimeRepository.class.getName());
 
     @Override

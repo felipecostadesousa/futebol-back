@@ -55,13 +55,9 @@ public class JogadorController {
 
     }
 
-    @GetMapping(value="/{id_time}/Jogador", produces= {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> findAll(@PathVariable("id_time") Integer idTime) {
+    @GetMapping(value="/Jogador", produces= {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> findAll() {
         LOGGER.info("Buscando lista de Jogador");
-
-        if (idTime == null){
-            return ResponseEntity.badRequest().body("idTime está inválido");
-        }
 
         List<Jogador> list = service.findAll();
         LOGGER.info("Jogador encontrados: {}", list.size());
