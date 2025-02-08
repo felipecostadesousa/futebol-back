@@ -14,11 +14,11 @@ public class JogadorTitulo {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="fk_jogador", referencedColumnName = "id_jogador")
+    @JoinColumn(name="fk_jogador", referencedColumnName = "id")
     private Jogador jogador;
 
     @ManyToOne
-    @JoinColumn(name="fk_titulo", referencedColumnName = "id_titulo")
+    @JoinColumn(name="id_titulo", referencedColumnName = "id")
     private Titulo titulo;
 
     public JogadorTitulo() {

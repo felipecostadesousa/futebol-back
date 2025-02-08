@@ -23,7 +23,7 @@ public class Estadio {
     private Integer capacidadePessoas;
 
     @ManyToOne
-    @JoinColumn(name = "fk_localizacao", referencedColumnName = "id_localizacao")
+    @JoinColumn(name = "id_localizacao", referencedColumnName = "id")
     private Localizacao localizacao;
 
     public Estadio() {
