@@ -1,6 +1,6 @@
 package com.example.demo.futebol.Time;
 
-import java.time.LocalDate;
+
 
 import com.example.demo.futebol.Estadio.Estadio;
 import com.example.demo.futebol.Localizacao.Localizacao;
@@ -25,7 +25,7 @@ public class Time {
     private String apelido;
 
     @Column(name="data_fundacao", nullable = false)
-    private LocalDate dataFundacao;
+    private String dataFundacao;
 
     @Column(name="site_time_url", nullable = false)
     private String site;
@@ -51,7 +51,7 @@ public class Time {
 
     }
 
-    public Time(Integer id, byte[] escudo, String nome, String apelido, LocalDate dataFundacao, String site, Integer qtdSocios, Integer qtdJogadoresSelecao, Double valorMercado, Estadio estadio, Localizacao localizacao){
+    public Time(Integer id, byte[] escudo, String nome, String apelido, String dataFundacao, String site, Integer qtdSocios, Integer qtdJogadoresSelecao, Double valorMercado, Estadio estadio, Localizacao localizacao){
         this.id = id;
         this.escudo = escudo;
         this.nome = nome;
@@ -65,7 +65,7 @@ public class Time {
         this.localizacao = localizacao;
     }
 
-    public Time(byte[] escudo, String nome, String apelido, LocalDate dataFundacao, String site, Integer qtdSocios, Integer qtdJogadoresSelecao, Double valorMercado, Estadio estadio, Localizacao localizacao){
+    public Time(byte[] escudo, String nome, String apelido, String dataFundacao, String site, Integer qtdSocios, Integer qtdJogadoresSelecao, Double valorMercado, Estadio estadio, Localizacao localizacao){
         this.escudo = escudo;
         this.nome = nome;
         this.apelido = apelido;
@@ -78,7 +78,7 @@ public class Time {
         this.localizacao = localizacao;
     }
 
-    public Time(Integer id, byte[] escudo, String nome, String apelido, LocalDate dataFundacao, String site, Integer qtdSocios, Integer qtdJogadoresSelecao, Double valorMercado, Localizacao localizacao){
+    public Time(Integer id, byte[] escudo, String nome, String apelido, String dataFundacao, String site, Integer qtdSocios, Integer qtdJogadoresSelecao, Double valorMercado, Localizacao localizacao){
         this.id = id;
         this.escudo = escudo;
         this.nome = nome;
@@ -123,11 +123,11 @@ public class Time {
         this.apelido = apelido;
     }
 
-    public LocalDate getDataFundacao() {
+    public String getDataFundacao() {
         return dataFundacao;
     }
 
-    public void setDataFundacao(LocalDate dataFundacao) {
+    public void setDataFundacao(String dataFundacao) {
         this.dataFundacao = dataFundacao;
     }
 

@@ -1,6 +1,5 @@
 package com.example.demo.futebol.Estadio;
 
-import java.time.LocalDate;
 import com.example.demo.futebol.Localizacao.Localizacao;
 
 import jakarta.persistence.*;
@@ -14,7 +13,7 @@ public class Estadio {
     private Integer id;
 
     @Column(name="data_fundacao", nullable = false)
-    private LocalDate dataFundacao;
+    private String dataFundacao;
 
     @Column(name="nome", nullable = false)
     private String nome;
@@ -29,7 +28,7 @@ public class Estadio {
     public Estadio() {
     }
 
-    public Estadio(Integer id, LocalDate dataFundacao, String nome, Integer capacidadePessoas, Localizacao localizacao) {
+    public Estadio(Integer id, String dataFundacao, String nome, Integer capacidadePessoas, Localizacao localizacao) {
         this.id = id;
         this.dataFundacao = dataFundacao;
         this.nome = nome;
@@ -37,7 +36,7 @@ public class Estadio {
         this.localizacao = localizacao;
     }
 
-    public Estadio(LocalDate dataFundacao, String nome, Integer capacidadePessoas, Localizacao localizacao) {
+    public Estadio(String dataFundacao, String nome, Integer capacidadePessoas, Localizacao localizacao) {
         this.dataFundacao = dataFundacao;
         this.nome = nome;
         this.capacidadePessoas = capacidadePessoas;
@@ -52,11 +51,11 @@ public class Estadio {
         this.id = id;
     }
 
-    public LocalDate getDataFundacao() {
+    public String getDataFundacao() {
         return dataFundacao;
     }
 
-    public void setDataFundacao(LocalDate dataFundacao) {
+    public void setDataFundacao(String dataFundacao) {
         this.dataFundacao = dataFundacao;
     }
 

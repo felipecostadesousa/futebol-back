@@ -1,6 +1,5 @@
 package com.example.demo.futebol.Jogo;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -27,7 +26,7 @@ public class JogoRequest {
     
     @JsonProperty("dataJogo")
     @JsonFormat(pattern="dd/MM/yyyy")
-    private LocalDate dataJogo;
+    private String dataJogo;
     
     @JsonProperty("golsTimeCasa")
     private Integer golsTimeCasa; 
@@ -52,10 +51,10 @@ public class JogoRequest {
         return this.id;
     }
            
-    public void setDataJogo( LocalDate dataJogo ) {
+    public void setDataJogo( String dataJogo ) {
         this.dataJogo = dataJogo ;
     }
-    public LocalDate getDataJogo() {
+    public String getDataJogo() {
         return this.dataJogo;
     }
            

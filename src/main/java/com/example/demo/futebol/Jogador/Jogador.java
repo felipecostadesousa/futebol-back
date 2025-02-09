@@ -1,6 +1,6 @@
 package com.example.demo.futebol.Jogador;
 
-import java.time.LocalDate;
+
 import com.example.demo.futebol.Time.Time;
 import jakarta.persistence.*;
 
@@ -19,12 +19,12 @@ public class Jogador {
     private String apelido;
 
     @Column(name = "data_nascimento", nullable = false)
-    private LocalDate dataNascimento;
+    private String dataNascimento;
 
     @Column(name = "nacionalidade", nullable = false)
     private String nacionalidade;
 
-    @Column(name = "imagemurl", nullable = false)
+    @Column(name = "imagem", nullable = false)
     private String imagemUrl;
 
     @Column(name = "posicao", nullable = false)
@@ -51,14 +51,14 @@ public class Jogador {
     @Column(name = "patrocinador", nullable = false)
     private String patrocinador;
 
-    @Column(name = "rede_social", nullable = false)
+    @Column(name = "redes_sociais", nullable = false)
     private String redeSocial;
 
     @Column(name = "data_inicio_contrato", nullable = false)
-    private LocalDate dataInicioContrato;
+    private String dataInicioContrato;
 
     @Column(name = "data_fim_contrato", nullable = false)
-    private LocalDate dataFimContrato;
+    private String dataFimContrato;
 
     @OneToOne
     @JoinColumn(name = "id_time", referencedColumnName = "id")
@@ -67,10 +67,10 @@ public class Jogador {
     public Jogador() {
     }
 
-    public Jogador(Integer idJogador, String nome, String apelido, LocalDate dataNascimento, String nacionalidade, 
+    public Jogador(Integer idJogador, String nome, String apelido, String dataNascimento, String nacionalidade, 
                    String imagemUrl, String posicao, double altura, String peDominante, double valorMercado, 
                    String cidadeNascimento, Integer numeroCamisa, String agente, String patrocinador, 
-                   String redeSocial, LocalDate dataInicioContrato, LocalDate dataFimContrato, Time time) {
+                   String redeSocial, String dataInicioContrato, String dataFimContrato, Time time) {
         this.idJogador = idJogador;
         this.nome = nome;
         this.apelido = apelido;
@@ -117,11 +117,11 @@ public class Jogador {
         this.apelido = apelido;
     }
 
-    public LocalDate getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -213,19 +213,19 @@ public class Jogador {
         this.redeSocial = redeSocial;
     }
 
-    public LocalDate getDataInicioContrato() {
+    public String getDataInicioContrato() {
         return dataInicioContrato;
     }
 
-    public void setDataInicioContrato(LocalDate dataInicioContrato) {
+    public void setDataInicioContrato(String dataInicioContrato) {
         this.dataInicioContrato = dataInicioContrato;
     }
 
-    public LocalDate getDataFimContrato() {
+    public String getDataFimContrato() {
         return dataFimContrato;
     }
 
-    public void setDataFimContrato(LocalDate dataFimContrato) {
+    public void setDataFimContrato(String dataFimContrato) {
         this.dataFimContrato = dataFimContrato;
     }
 

@@ -1,6 +1,5 @@
 package com.example.demo.futebol.Arbitro;
 
-import java.time.LocalDate;
 
 import jakarta.persistence.*;
 
@@ -13,18 +12,18 @@ public class Arbitro{
     private Integer id;
 
     @Column(name="contrato_inicio", nullable = false)
-    private LocalDate contratoInicio;
+    private String contratoInicio;
 
     public Arbitro() {
     }
 
-    public Arbitro(Integer id, LocalDate contratoInicio, String nome, String apelido, LocalDate dataNascimento, String nacionalidade, String imagem){
+    public Arbitro(Integer id, String contratoInicio, String nome, String apelido, String dataNascimento, String nacionalidade, String imagem){
         super();
         this.id = id;
         this.contratoInicio = contratoInicio;
     }
 
-    public Arbitro(LocalDate contratoInicio, String nome, String apelido, LocalDate dataNascimento, String nacionalidade, String imagem){
+    public Arbitro(String contratoInicio, String nome, String apelido, String dataNascimento, String nacionalidade, String imagem){
         super();
         this.contratoInicio = contratoInicio;
     }
@@ -41,11 +40,11 @@ public class Arbitro{
         this.id = id;
     }
 
-    public LocalDate getContratoInicio() {
+    public String getContratoInicio() {
         return contratoInicio;
     }
 
-    public void setContratoInicio(LocalDate contratoInicio) {
+    public void setContratoInicio(String contratoInicio) {
         this.contratoInicio = contratoInicio;
     }
 

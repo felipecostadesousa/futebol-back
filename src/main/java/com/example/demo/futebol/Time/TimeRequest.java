@@ -1,6 +1,5 @@
 package com.example.demo.futebol.Time;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -35,7 +34,7 @@ public class TimeRequest {
    
     @JsonProperty("dataFundacao")
     @JsonFormat(pattern="dd/MM/yyyy")
-    private LocalDate dataFundacao;
+    private String dataFundacao;
 
     @JsonProperty("siteTimeUrl")
     private String siteTimeUrl; 
@@ -82,10 +81,10 @@ public class TimeRequest {
         return this.apelido;
     }
            
-    public void setDataFundacao( LocalDate dataFundacao ) {
+    public void setDataFundacao( String dataFundacao ) {
         this.dataFundacao = dataFundacao ;
     }
-    public LocalDate getDataFundacao() {
+    public String getDataFundacao() {
         return this.dataFundacao;
     }
     

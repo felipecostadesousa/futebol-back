@@ -1,6 +1,5 @@
 package com.example.demo.futebol.Jogador;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -63,15 +62,16 @@ public class JogadorRequest {
    
     @JsonProperty("contratoInicio")
     @JsonFormat(pattern="dd/MM/yyyy")
-    private LocalDate contratoInicio;
+    private String contratoInicio;
 
     @JsonProperty("dataNascimento")
     @JsonFormat(pattern="dd/MM/yyyy")
-    private LocalDate dataNascimento;
+    private String dataNascimento;
     
     @JsonProperty("contratoFim")
     @JsonFormat(pattern="dd/MM/yyyy")
-    private LocalDate contratoFim;
+    private String contratoFim;
+    
   
     public Jogador transform(Time time){
         Jogador jogador = new Jogador(this.id, this.nome, this.apelido, this.dataNascimento, this.nacionalidade, this.imagem, this.posicao,  this.altura,  this.peDominante,  this.valorMercado, this.cidadeNascimento,  this.numeroCamisa,  this.agente,  this.patrocinador,  this.redesSociais, this.contratoInicio,  this.contratoFim, time);
@@ -148,17 +148,17 @@ public class JogadorRequest {
         return this.redesSociais;
     }
 
-    public void setContratoInicio( LocalDate contratoInicio ) {
+    public void setContratoInicio( String contratoInicio ) {
         this.contratoInicio = contratoInicio ;
     }
-    public LocalDate getContratoInicio() {
+    public String getContratoInicio() {
         return this.contratoInicio;
     }
            
-    public void setContratoFim( LocalDate contratoFim ) {
+    public void setContratoFim( String contratoFim ) {
         this.contratoFim = contratoFim ;
     }
-    public LocalDate getContratoFim() {
+    public String getContratoFim() {
         return this.contratoFim;
     }
         

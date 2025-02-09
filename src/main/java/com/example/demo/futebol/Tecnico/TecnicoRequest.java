@@ -1,6 +1,5 @@
 package com.example.demo.futebol.Tecnico;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -37,15 +36,15 @@ public class TecnicoRequest {
 
     @JsonProperty("dataNascimento")
     @JsonFormat(pattern="dd/MM/yyyy")
-    private LocalDate dataNascimento;
+    private String dataNascimento;
    
     @JsonProperty("contratoInicio")
     @JsonFormat(pattern="dd/MM/yyyy")
-    private LocalDate contratoInicio;
+    private String contratoInicio;
     
     @JsonProperty("contratoFim")
     @JsonFormat(pattern="dd/MM/yyyy")
-    private LocalDate contratoFim;
+    private String contratoFim;
 
     @JsonProperty("cidadeNascimento")
     private String cidadeNascimento; 
@@ -62,17 +61,17 @@ public class TecnicoRequest {
         return this.id;
     }
            
-    public void setContratoInicio( LocalDate contratoInicio ) {
+    public void setContratoInicio( String contratoInicio ) {
         this.contratoInicio = contratoInicio ;
     }
-    public LocalDate getContratoInicio() {
+    public String getContratoInicio() {
         return this.contratoInicio;
     }
            
-    public void setContratoFim( LocalDate contratoFim ) {
+    public void setContratoFim( String contratoFim ) {
         this.contratoFim = contratoFim ;
     }
-    public LocalDate getContratoFim() {
+    public String getContratoFim() {
         return this.contratoFim;
     }
 

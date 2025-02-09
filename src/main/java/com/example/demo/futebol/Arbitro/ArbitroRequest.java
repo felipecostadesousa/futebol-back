@@ -1,6 +1,5 @@
 package com.example.demo.futebol.Arbitro;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -21,7 +20,7 @@ public class ArbitroRequest {
     private Integer id;
     
     @JsonProperty("contratoInicio")
-    private LocalDate contratoInicio; 
+    private String contratoInicio; 
 
     @JsonProperty("nome")
     private String nome; 
@@ -30,7 +29,7 @@ public class ArbitroRequest {
     private String apelido; 
 
     @JsonProperty("dataNascimento")
-    private LocalDate dataNascimento; 
+    private String dataNascimento; 
 
     @JsonProperty("nacionalidade")
     private String nacionalidade; 
@@ -38,7 +37,7 @@ public class ArbitroRequest {
     @JsonProperty("imagem")
     private String imagem; 
 
-    public Arbitro transform( LocalDate contratoInicio, String nome, String apelido, LocalDate dataNascimento, String nacionalidade, String imagem  ){
+    public Arbitro transform( String contratoInicio, String nome, String apelido, String dataNascimento, String nacionalidade, String imagem  ){
         Arbitro arbitro = new Arbitro(contratoInicio, nome, apelido, dataNascimento, nacionalidade, imagem);
         return arbitro;
     }
@@ -51,10 +50,10 @@ public class ArbitroRequest {
         return this.id;
     }
 
-    public void setContratoInicio( LocalDate contratoInicio ) {
+    public void setContratoInicio( String contratoInicio ) {
         this.contratoInicio = contratoInicio;
     }
-    public LocalDate getContratoInicio() {
+    public String getContratoInicio() {
         return this.contratoInicio;
     }
       
@@ -78,12 +77,12 @@ public class ArbitroRequest {
     }
 
 
-    public LocalDate getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
