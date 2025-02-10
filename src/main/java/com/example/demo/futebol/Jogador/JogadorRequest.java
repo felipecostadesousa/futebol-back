@@ -71,8 +71,11 @@ public class JogadorRequest {
     @JsonProperty("contratoFim")
     @JsonFormat(pattern="dd/MM/yyyy")
     private String contratoFim;
-    
-  
+
+    @JsonProperty("idTime")
+    private Integer idTime;
+
+
     public Jogador transform(Time time){
         Jogador jogador = new Jogador(this.id, this.nome, this.apelido, this.dataNascimento, this.nacionalidade, this.imagem, this.posicao,  this.altura,  this.peDominante,  this.valorMercado, this.cidadeNascimento,  this.numeroCamisa,  this.agente,  this.patrocinador,  this.redesSociais, this.contratoInicio,  this.contratoFim, time);
         return jogador;
@@ -160,6 +163,14 @@ public class JogadorRequest {
     }
     public String getContratoFim() {
         return this.contratoFim;
+    }
+
+    public Integer getIdTime() {
+        return idTime;
+    }
+
+    public void setIdTime(Integer idTime) {
+        this.idTime = idTime;
     }
         
     @Override

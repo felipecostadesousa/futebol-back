@@ -32,7 +32,8 @@ public class JogoRequest {
     private Integer golsTimeCasa; 
    
     @JsonProperty("golsTimeVisitante")
-    private Integer golsTimeVisitante; 
+    private Integer golsTimeVisitante;
+
 
     public Jogo transform(Estadio estadio, Arbitro arbitro, Competicao competicao){
         Jogo objJogo = new Jogo(  this.id,  this.dataJogo,  this.golsTimeCasa,  this.golsTimeVisitante, estadio, arbitro, competicao);

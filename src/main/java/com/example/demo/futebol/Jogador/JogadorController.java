@@ -33,27 +33,28 @@ public class JogadorController {
         this.timeService = timeService;
     }
 
-    @PostMapping(value="/{id_time}/Jogador", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-        public ResponseEntity<?> save(@PathVariable("id_time") Integer idTime, @RequestBody JogadorRequest request){
+    @PostMapping(value = "/jogador", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> save(@RequestBody JogadorRequest request) {
+        Integer idTime = request.getIdTime();
         LOGGER.info("Iniciando criação de um novo Jogador para Time com ID: {}", idTime);
-        if (idTime == null){
+
+        if (idTime == null) {
             return ResponseEntity.badRequest().body("idTime está inválido");
         }
 
         Optional<Time> possivelTime = this.timeService.findById(idTime);
-        if(possivelTime.isPresent()){
+        if (possivelTime.isPresent()) {
             Time time = possivelTime.get();
             Jogador jogador = request.transform(time);
             service.save(jogador);
             LOGGER.info("Jogador criado para Time com sucesso!");
             return ResponseEntity.ok().header("Custom-Header", "foo").body(jogador);
-        }
-        else{
-            LOGGER.info("time não encontrado com ID: {}", idTime);
+        } else {
+            LOGGER.info("Time não encontrado com ID: {}", idTime);
             return ResponseEntity.notFound().header("not-found-id", String.valueOf(idTime)).build();
         }
-
     }
+
 
     @GetMapping(value="/Jogador", produces= {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> findAll() {
