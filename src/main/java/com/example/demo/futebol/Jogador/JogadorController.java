@@ -87,9 +87,14 @@ public class JogadorController {
         }
     }
                            
-    @PutMapping(value="/{id_time}/Jogador", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces= {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> update(@PathVariable("id_time") Integer idTime, @RequestBody JogadorRequest request) {
+    @PutMapping(value="/jogador", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces= {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> update(@RequestBody JogadorRequest request) {
         LOGGER.info("Iniciando atualização de Jogador pelo id: {}", request.getId());
+
+        Integer idTime = request.getIdTime();
+        if (idTime == null) {
+            return ResponseEntity.badRequest().body("idTime está inválido");
+        }
 
         Optional<Time> possivelTime = this.timeService.findById(idTime);
         Optional<Jogador> possivelJogador = service.findById(request.getId());
