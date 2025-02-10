@@ -56,7 +56,7 @@ public class JogadorController {
     }
 
 
-    @GetMapping(value="/Jogador", produces= {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value="/jogador", produces= {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> findAll() {
         LOGGER.info("Buscando lista de Jogador");
 
@@ -65,13 +65,9 @@ public class JogadorController {
         return ResponseEntity.ok().header("Custom-Header", "foo").body(list);
     }
 
-    @GetMapping(value="/{id_time}/Jogador/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> findById(@PathVariable("id_time") Integer idTime, @PathVariable("id") Integer id){
+    @GetMapping(value="/jogador/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> findById(@PathVariable("id") Integer id){
         LOGGER.info("Buscando Jogador por id: {}", id);
-
-        if (idTime == null){
-            return ResponseEntity.badRequest().body("idTime está inválido");
-        }
 
         if(id == null){
             return ResponseEntity.badRequest().body("id inválido");
@@ -87,8 +83,8 @@ public class JogadorController {
         }
     }
                            
-    @PutMapping(value="/jogador", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces= {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> update(@RequestBody JogadorRequest request) {
+    @PutMapping(value="/jogador/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces= {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> update(@PathVariable("id") Integer id, @RequestBody JogadorRequest request) {
         LOGGER.info("Iniciando atualização de Jogador pelo id: {}", request.getId());
 
         Integer idTime = request.getIdTime();
@@ -97,7 +93,7 @@ public class JogadorController {
         }
 
         Optional<Time> possivelTime = this.timeService.findById(idTime);
-        Optional<Jogador> possivelJogador = service.findById(request.getId());
+        Optional<Jogador> possivelJogador = service.findById(id);
         if(possivelJogador.isPresent()){
             Jogador jogador = request.transform(possivelTime.get());
             service.update(jogador);
@@ -110,8 +106,8 @@ public class JogadorController {
     }
 
 
-    @DeleteMapping(value="/{id_time}/Jogador/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> delete(@PathVariable("id_time") Integer idTime, @PathVariable("id") Integer id) {
+    @DeleteMapping(value="/jogador/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
         LOGGER.info("Iniciando deleção de Jogador pelo id: {}", id);
         Optional<Jogador> possivelJogador = service.findById(id);
         Jogador object = possivelJogador.get();
