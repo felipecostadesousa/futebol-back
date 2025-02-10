@@ -33,9 +33,11 @@ public class TecnicoController {
         this.timeService = timeService;
     }
 
-    @PostMapping(value="/{id_time}/Tecnico", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> save(@PathVariable("id_time") Integer idTime, @RequestBody TecnicoRequest request){
-        LOGGER.info("Iniciando criação de um novo Tecnico para Time com ID: {}", idTime);
+    @PostMapping(value="/tecnico", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> save(@RequestBody TecnicoRequest request){
+        Integer idTime = request.getIdTime();
+        LOGGER.info("Iniciando criação de um novo Jogador para Time com ID: {}", idTime);
+
         if (idTime == null){
             return ResponseEntity.badRequest().body("idTime está inválido");
         }
@@ -55,7 +57,7 @@ public class TecnicoController {
 
     }
 
-    @GetMapping(value="/Tecnico", produces= {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value="/tecnico", produces= {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> findAll() {
         try {
             LOGGER.info("Buscando lista de Tecnico");
@@ -75,13 +77,9 @@ public class TecnicoController {
     }
 
 
-    @GetMapping(value="/{id_time}/Tecnico/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> findById(@PathVariable("id_time") Integer idTime, @PathVariable("id") Integer id){
+    @GetMapping(value="/tecnico/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> findById(@PathVariable("id") Integer id){
         LOGGER.info("Buscando Tecnico por id: {}", id);
-
-        if (idTime == null){
-            return ResponseEntity.badRequest().body("idTime está inválido");
-        }
 
         if(id == null){
             return ResponseEntity.badRequest().body("id inválido");
@@ -97,12 +95,14 @@ public class TecnicoController {
         }
     }
            
-    @PutMapping(value="/{id_time}/Tecnico", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces= {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> update(@PathVariable("id_time") Integer idTime, @RequestBody TecnicoRequest request) {
-        LOGGER.info("Iniciando atualização de Tecnico pelo id: {}", request.getId());
+    @PutMapping(value="/tecnico/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces= {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> update(@PathVariable("id") Integer id, @RequestBody TecnicoRequest request) {
+        LOGGER.info("Iniciando atualização de Tecnico pelo id: {}", id);
+
+        Integer idTime = request.getIdTime();
 
         Optional<Time> possivelTime = this.timeService.findById(idTime);
-        Optional<Tecnico> possivelTecnico = service.findById(request.getId());
+        Optional<Tecnico> possivelTecnico = service.findById(id);
         if(possivelTecnico.isPresent()){
             Tecnico tecnico = request.transform(possivelTime.get());
             service.update(tecnico);
@@ -114,8 +114,9 @@ public class TecnicoController {
         }
     }
 
-    @DeleteMapping(value="/{id_time}/Tecnico/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> delete(@PathVariable("id_time") Integer idTime, @PathVariable("id") Integer id) {
+    @DeleteMapping(value="/tecnico/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
+
         LOGGER.info("Iniciando deleção de Tecnico pelo id: {}", id);
         Optional<Tecnico> possivelTecnico = service.findById(id);
         Tecnico tecnico = possivelTecnico.get();

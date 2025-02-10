@@ -47,7 +47,10 @@ public class TecnicoRequest {
     private String contratoFim;
 
     @JsonProperty("cidadeNascimento")
-    private String cidadeNascimento; 
+    private String cidadeNascimento;
+
+    @JsonProperty("idTime")
+    private Integer idTime;
      
     public Tecnico transform(Time time){
         Tecnico objTecnico = new Tecnico(this.id, this.nome, this.apelido, this.dataNascimento, this.nacionalidade, this.imagem,  this.contratoInicio,  this.contratoFim,  this.cidadeNascimento,    time);
@@ -82,9 +85,57 @@ public class TecnicoRequest {
         return this.cidadeNascimento;
     }
 
+    public Integer getIdTime() {
+        return idTime;
+    }
+
+    public void setIdTime(Integer idTime) {
+        this.idTime = idTime;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    public String getNacionalidade() {
+        return nacionalidade;
+    }
+
+    public void setNacionalidade(String nacionalidade) {
+        this.nacionalidade = nacionalidade;
+    }
+
+    public String getApelido() {
+        return apelido;
+    }
+
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     @Override
     public String toString() {
-        return "TecnicoDTO [id=" + id + ",   contratoInicio=" + contratoInicio + ",   contratoFim=" + contratoFim + ",   cidadeNascimento=" + cidadeNascimento + "]";
+        return "TecnicoDTO [id=" + id + ", nome" + nome + ", apelido" + apelido + ", nacionalidade" + nacionalidade + ",   contratoInicio=" + contratoInicio + ",   contratoFim=" + contratoFim + ",   cidadeNascimento=" + cidadeNascimento + "]";
     }
                                              
     @Override
