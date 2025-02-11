@@ -16,10 +16,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.demo.futebol.Time.Time;
 import com.example.demo.futebol.Time.TimeService;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/time")
 public class TecnicoController {
@@ -33,8 +37,9 @@ public class TecnicoController {
         this.timeService = timeService;
     }
 
-    @PostMapping(value="/{id_time}/Tecnico", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> save(@PathVariable("id_time") Integer idTime, @RequestBody TecnicoRequest request){
+    @PostMapping(value = "/tecnico", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+        public ResponseEntity<?> save(@RequestBody TecnicoRequest request) {
+        Integer idTime = request.getIdTime();
         LOGGER.info("Iniciando criação de um novo Tecnico para Time com ID: {}", idTime);
         if (idTime == null){
             return ResponseEntity.badRequest().body("idTime está inválido");
@@ -55,7 +60,7 @@ public class TecnicoController {
 
     }
 
-    @GetMapping(value="/Tecnico", produces= {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value="/tecnico", produces= {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> findAll() {
         try {
             LOGGER.info("Buscando lista de Tecnico");
@@ -75,13 +80,9 @@ public class TecnicoController {
     }
 
 
-    @GetMapping(value="/{id_time}/Tecnico/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> findById(@PathVariable("id_time") Integer idTime, @PathVariable("id") Integer id){
+    @GetMapping(value="/tecnico/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> findById(@PathVariable("id") Integer id){
         LOGGER.info("Buscando Tecnico por id: {}", id);
-
-        if (idTime == null){
-            return ResponseEntity.badRequest().body("idTime está inválido");
-        }
 
         if(id == null){
             return ResponseEntity.badRequest().body("id inválido");
@@ -97,12 +98,14 @@ public class TecnicoController {
         }
     }
            
-    @PutMapping(value="/{id_time}/Tecnico", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces= {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> update(@PathVariable("id_time") Integer idTime, @RequestBody TecnicoRequest request) {
-        LOGGER.info("Iniciando atualização de Tecnico pelo id: {}", request.getId());
+    @PutMapping(value="/tecnico/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces= {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> update(@PathVariable("id") Integer id, @RequestBody TecnicoRequest request) {
+        LOGGER.info("Iniciando atualização de Tecnico pelo id: {}", id);
+
+        Integer idTime = request.getIdTime();
 
         Optional<Time> possivelTime = this.timeService.findById(idTime);
-        Optional<Tecnico> possivelTecnico = service.findById(request.getId());
+        Optional<Tecnico> possivelTecnico = service.findById(id);
         if(possivelTecnico.isPresent()){
             Tecnico tecnico = request.transform(possivelTime.get());
             service.update(tecnico);
@@ -114,14 +117,18 @@ public class TecnicoController {
         }
     }
 
-    @DeleteMapping(value="/{id_time}/Tecnico/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> delete(@PathVariable("id_time") Integer idTime, @PathVariable("id") Integer id) {
-        LOGGER.info("Iniciando deleção de Tecnico pelo id: {}", id);
+    @DeleteMapping(value="/Tecnico/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
+        LOGGER.info("Iniciando deleção do tecnico com ID: {}", id);
+
         Optional<Tecnico> possivelTecnico = service.findById(id);
-        Tecnico tecnico = possivelTecnico.get();
-        service.delete(tecnico);
-        LOGGER.info("Tecnico deletado(a) com sucesso: {}");
-        return ResponseEntity.ok().header("Custom-Header", "foo").body(tecnico);
+        if (possivelTecnico.isEmpty()) {
+            LOGGER.warn("Tecnico com ID {} não encontrado.", id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tecnico com ID " + id + " não encontrado.");
+        }
+        service.delete(possivelTecnico.get());
+        LOGGER.info("Tecnico deletado com sucesso: ID {}", id);
+        return ResponseEntity.ok().body("Tecnico removido com sucesso.");
     }
 
 }

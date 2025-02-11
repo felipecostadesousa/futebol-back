@@ -83,11 +83,11 @@ public class TecnicoService {
     @Transactional
     public void delete(Tecnico tecnico) {
         try {
-            LOGGER.info("Deletando Tecnico (service): {}");
+            LOGGER.info("Deletando tecnico com ID: {}", tecnico.getId());
             this.repository.delete(tecnico);
-            LOGGER.info("Tecnico deletado com sucesso (service): {}");
+            LOGGER.info("Tecnico deletado com sucesso!");
         } catch (Exception e) {
-            LOGGER.error("Erro ao deletar Tecnico (service): {}", e);
+            LOGGER.error("Erro ao deletar tecnico com ID {}: {}", tecnico.getId(), e.getMessage());
             throw e;
         }
         this.repository.delete(tecnico);

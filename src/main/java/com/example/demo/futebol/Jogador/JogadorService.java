@@ -84,15 +84,13 @@ public class JogadorService {
     @Transactional
     public void delete(Jogador jogador) {
         try {
-            LOGGER.info("Deletando Jogador (service): {}");
+            LOGGER.info("Deletando jogador com ID: {}", jogador.getIdJogador());
             this.repository.delete(jogador);
-            LOGGER.info("Jogador deletado com sucesso (service): {}");
+            LOGGER.info("Jogador deletado com sucesso!");
         } catch (Exception e) {
-            LOGGER.error("Erro ao deletar Jogador (service): {}", e);
+            LOGGER.error("Erro ao deletar jogador com ID {}: {}", jogador.getIdJogador(), e.getMessage());
             throw e;
         }
         this.repository.delete(jogador);
     }
-
-
 }

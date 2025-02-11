@@ -15,10 +15,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.demo.futebol.Localizacao.Localizacao;
 import com.example.demo.futebol.Localizacao.LocalizacaoService;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/localizacao")
 public class EstadioController {
@@ -107,15 +111,29 @@ public class EstadioController {
     }
 
 
-    @DeleteMapping(value="/{id_localizacao}/Estadio/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> delete(@PathVariable("id_localizacao") Long idLocalizacao, @PathVariable("id") Integer id) {
-        LOGGER.info("Iniciando deleção de Estadio pelo id: {}", id);
+    @DeleteMapping(value="/Estadio/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
+        LOGGER.info("Iniciando deleção do Estadio com ID: {}", id);
+
         Optional<Estadio> possivelEstadio = service.findById(id);
-        Estadio estadio = possivelEstadio.get();
-        service.delete(estadio);
-        LOGGER.info("Estadio deletado(a) com sucesso: {}");
-        return ResponseEntity.ok().header("Custom-Header", "foo").body(estadio);
+        if (possivelEstadio.isEmpty()) {
+            LOGGER.warn("Estadio com ID {} não encontrado.", id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Estadio com ID " + id + " não encontrado.");
+        }
+        service.delete(possivelEstadio.get());
+        LOGGER.info("Estadio deletado com sucesso: ID {}", id);
+        return ResponseEntity.ok().body("Estadio removido com sucesso.");
     }
 
+    @GetMapping(value="/Estadio", produces= {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> findAllEstadios() {
+        LOGGER.info("Buscando todos os estádios cadastrados");
+        List<Estadio> estadios = service.findAll();
+        if (estadios.isEmpty()) {
+          LOGGER.info("Nenhum estádio encontrado.");
+          return ResponseEntity.noContent().build();
+        }
+        LOGGER.info("Foram encontrados {} estádios.", estadios.size());
+        return ResponseEntity.ok().body(estadios);
+    }
 }
-

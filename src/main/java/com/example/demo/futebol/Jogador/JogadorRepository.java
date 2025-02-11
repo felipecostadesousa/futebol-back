@@ -34,10 +34,12 @@ public class JogadorRepository implements JogadorDao{
 
     @Override
     public void delete(Jogador jogador) {
-        try{
-            em.remove(jogador);
-        }catch(PersistenceException e){
-            LOGGER.error("Erro de persistência: não foi possível deletar jogador", e.getMessage());
+      try {
+        LOGGER.info("Removendo jogador do banco de dados: {}", jogador.getIdJogador());
+        em.remove(jogador);
+        } catch (PersistenceException e) {
+            LOGGER.error("Erro de persistência: não foi possível deletar o jogador com ID {} => {}", jogador.getIdJogador(), e.getMessage());
+          throw e;
         }
     }
 

@@ -16,10 +16,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.demo.futebol.Time.Time;
 import com.example.demo.futebol.Time.TimeService;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/time")
 public class JogadorController {
@@ -33,8 +38,9 @@ public class JogadorController {
         this.timeService = timeService;
     }
 
-    @PostMapping(value="/{id_time}/Jogador", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-        public ResponseEntity<?> save(@PathVariable("id_time") Integer idTime, @RequestBody JogadorRequest request){
+    @PostMapping(value = "/jogador", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+        public ResponseEntity<?> save(@RequestBody JogadorRequest request) {
+        Integer idTime = request.getIdTime();
         LOGGER.info("Iniciando criação de um novo Jogador para Time com ID: {}", idTime);
         if (idTime == null){
             return ResponseEntity.badRequest().body("idTime está inválido");
@@ -64,13 +70,9 @@ public class JogadorController {
         return ResponseEntity.ok().header("Custom-Header", "foo").body(list);
     }
 
-    @GetMapping(value="/{id_time}/Jogador/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> findById(@PathVariable("id_time") Integer idTime, @PathVariable("id") Integer id){
+    @GetMapping(value="/jogador/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> findById(@PathVariable("id") Integer id){
         LOGGER.info("Buscando Jogador por id: {}", id);
-
-        if (idTime == null){
-            return ResponseEntity.badRequest().body("idTime está inválido");
-        }
 
         if(id == null){
             return ResponseEntity.badRequest().body("id inválido");
@@ -86,12 +88,17 @@ public class JogadorController {
         }
     }
                            
-    @PutMapping(value="/{id_time}/Jogador", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces= {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> update(@PathVariable("id_time") Integer idTime, @RequestBody JogadorRequest request) {
+    @PatchMapping(value="/jogador/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces= {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> update(@PathVariable("id") Integer id, @RequestBody JogadorRequest request) {
         LOGGER.info("Iniciando atualização de Jogador pelo id: {}", request.getId());
 
+        Integer idTime = request.getIdTime();
+        if (idTime == null) {
+            return ResponseEntity.badRequest().body("idTime está inválido");
+        }
+
         Optional<Time> possivelTime = this.timeService.findById(idTime);
-        Optional<Jogador> possivelJogador = service.findById(request.getId());
+        Optional<Jogador> possivelJogador = service.findById(id);
         if(possivelJogador.isPresent()){
             Jogador jogador = request.transform(possivelTime.get());
             service.update(jogador);
@@ -104,14 +111,17 @@ public class JogadorController {
     }
 
 
-    @DeleteMapping(value="/{id_time}/Jogador/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> delete(@PathVariable("id_time") Integer idTime, @PathVariable("id") Integer id) {
-        LOGGER.info("Iniciando deleção de Jogador pelo id: {}", id);
-        Optional<Jogador> possivelJogador = service.findById(id);
-        Jogador object = possivelJogador.get();
-        service.delete(object);
-        LOGGER.info("Jogador deletado(a) com sucesso: {}");
-        return ResponseEntity.ok().header("Custom-Header", "foo").body(object);
-    }
+    @DeleteMapping(value="/Jogador/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
+        LOGGER.info("Iniciando deleção do jogador com ID: {}", id);
 
+        Optional<Jogador> possivelJogador = service.findById(id);
+        if (possivelJogador.isEmpty()) {
+            LOGGER.warn("Jogador com ID {} não encontrado.", id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Jogador com ID " + id + " não encontrado.");
+        }
+        service.delete(possivelJogador.get());
+        LOGGER.info("Jogador deletado com sucesso: ID {}", id);
+        return ResponseEntity.ok().body("Jogador removido com sucesso.");
+    }
 }

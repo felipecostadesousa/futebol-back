@@ -34,10 +34,12 @@ public class TecnicoRepository implements TecnicoDao{
 
     @Override
     public void delete(Tecnico tecnico) {
-        try{
-            em.remove(tecnico);
-        }catch(PersistenceException e){
-            LOGGER.error("Erro de persistência: não foi possível deletar técnico", e.getMessage());
+      try {
+        LOGGER.info("Removendo tecnico do banco de dados: {}", tecnico.getId());
+        em.remove(tecnico);
+        } catch (PersistenceException e) {
+            LOGGER.error("Erro de persistência: não foi possível deletar o tecnico com ID {} => {}", tecnico.getId(), e.getMessage());
+          throw e;
         }
     }
 
