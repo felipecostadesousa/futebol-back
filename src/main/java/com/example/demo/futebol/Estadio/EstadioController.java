@@ -20,7 +20,7 @@ import com.example.demo.futebol.Localizacao.Localizacao;
 import com.example.demo.futebol.Localizacao.LocalizacaoService;
 
 @RestController
-@RequestMapping("/localizacao")
+@RequestMapping("/Estadio")
 public class EstadioController {
 
     private EstadioService service;
@@ -32,8 +32,9 @@ public class EstadioController {
         this.localizacaoService = localizacaoService;
     }
 
-    @PostMapping(value="/{id_localizacao}/Estadio", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-        public ResponseEntity<?> save(@PathVariable("id_localizacao") Integer idLocalizacao, @RequestBody EstadioRequest request){
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+        public ResponseEntity<?> save(@RequestBody EstadioRequest request){
+        var idLocalizacao = request.getIdLocalizacao();
         LOGGER.info("Iniciando criação de um novo Estadio para Localizacao com ID: {}", idLocalizacao);
         if (idLocalizacao == null){
             return ResponseEntity.badRequest().body("idLocalizacao está inválido");
@@ -54,26 +55,18 @@ public class EstadioController {
 
     }
 
-    @GetMapping(value="/{id_localizacao}/Estadio", produces= {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> findAll(@PathVariable("id_localizacao") Integer idLocalizacao) {
+    @GetMapping(produces= {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> findAll() {
         LOGGER.info("Buscando lista de Estadio");
-
-        if (idLocalizacao == null){
-            return ResponseEntity.badRequest().body("idLocalizacao está inválido");
-        }
-
+        
         List<Estadio> list = service.findAll();
         LOGGER.info("Estadio encontrados: {}", list.size());
         return ResponseEntity.ok().header("Custom-Header", "foo").body(list);
     }
 
-    @GetMapping(value="/{id_localizacao}/Estadio/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> findById(@PathVariable("id_localizacao") Integer idLocalizacao, @PathVariable("id") Integer id){
+    @GetMapping(value="/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> findById(@PathVariable("id") Integer id){
         LOGGER.info("Buscando Estadio por id: {}", id);
-
-        if (idLocalizacao == null){
-            return ResponseEntity.badRequest().body("idLocalizacao está inválido");
-        }
 
         if(id == null){
             return ResponseEntity.badRequest().body("id inválido");
@@ -89,12 +82,13 @@ public class EstadioController {
         }
     }
            
-    @PutMapping(value="/{id_localizacao}/Estadio", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces= {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> update(@PathVariable("id_localizacao") Integer idLocalizacao, @RequestBody EstadioRequest request) {
-        LOGGER.info("Iniciando atualização de Estadio pelo id: {}", request.getId());
+    @PutMapping(value="/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces= {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> update(@PathVariable("id") Integer id, @RequestBody EstadioRequest request) {
+        var idLocalizacao = request.getIdLocalizacao();
+        LOGGER.info("Iniciando atualização de Estadio pelo id: {}",id);
 
         Optional<Localizacao> possivelLocalizacao = this.localizacaoService.findById(idLocalizacao);
-        Optional<Estadio> estadio = service.findById(request.getId());
+        Optional<Estadio> estadio = service.findById(id);
         if(estadio.isPresent()){
             Estadio estadioFinal = request.transform(possivelLocalizacao.get());
             service.update(estadioFinal);
@@ -107,8 +101,8 @@ public class EstadioController {
     }
 
 
-    @DeleteMapping(value="/{id_localizacao}/Estadio/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> delete(@PathVariable("id_localizacao") Long idLocalizacao, @PathVariable("id") Integer id) {
+    @DeleteMapping(value="/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
         LOGGER.info("Iniciando deleção de Estadio pelo id: {}", id);
         Optional<Estadio> possivelEstadio = service.findById(id);
         Estadio estadio = possivelEstadio.get();

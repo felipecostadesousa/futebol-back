@@ -56,14 +56,14 @@ public class EstadioService {
     @Transactional
     public void save(Estadio estadio) {
         try {
-            LOGGER.info("Criando o Estadio (service): {}");
-            this.repository.save(estadio);
-            LOGGER.info("Estadio criado com sucesso (service): {}");
+        
+            LOGGER.info("Criando o Estadio (service): {}", estadio);
+            this.repository.save(estadio);  // Salva o estadio uma vez
+            LOGGER.info("Estadio criado com sucesso (service): {}", estadio);
         } catch (Exception e) {
             LOGGER.error("Erro ao criar Estadio (service): {}", e);
-            throw e;
+            throw e;  // Lança a exceção para marcar a transação como rollback-only
         }
-        this.repository.save(estadio);
     }
 
     @Transactional
