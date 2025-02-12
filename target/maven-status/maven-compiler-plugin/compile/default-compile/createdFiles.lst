@@ -57,6 +57,7 @@ com\example\demo\futebol\Jogador\JogadorRequest.class
 com\example\demo\futebol\Estatistica\EstatisticaService.class
 com\example\demo\futebol\Titulo\Titulo.class
 com\example\demo\futebol\JogoTime\JogoTimeService.class
+com\example\demo\futebol\Jogador\JogadorEstatisticaDTO.class
 com\example\demo\futebol\Tecnico\TecnicoDao.class
 com\example\demo\futebol\Arbitro\ArbitroService.class
 com\example\demo\futebol\Tecnico\TecnicoRequest.class

@@ -32,6 +32,7 @@ public class EstadioRepository implements EstadioDao {
             LOGGER.info("Estádio salvo com sucesso: {}", estadio);
         } catch (PersistenceException e) {
             LOGGER.error("Erro de persistência: não foi possível criar estádio", e);
+            throw e;  // Relança a exceção para que o Spring possa tratá-la corretamente
         }
     }
 
@@ -46,17 +47,22 @@ public class EstadioRepository implements EstadioDao {
           throw e;
         }
     }
-
-    @Transactional
     @Override
     public void update(Estadio estadio) {
-        try {
-            em.merge(estadio);
-            LOGGER.info("Estádio atualizado com sucesso: {}", estadio);
-        } catch (PersistenceException e) {
-            LOGGER.error("Erro de persistência: não foi possível atualizar estádio", e);
-        }
-    }
+      try {
+          Estadio existente = em.find(Estadio.class, estadio.getId());
+          if (existente != null) {
+              em.merge(estadio);
+              LOGGER.info("Estádio atualizado com sucesso: {}", estadio);
+          } else {
+              LOGGER.warn("Estádio com ID {} não encontrado para atualização", estadio.getId());
+          }
+      } catch (PersistenceException e) {
+          LOGGER.error("Erro de persistência: não foi possível atualizar estádio", e);
+          throw e;
+      }
+}
+
 
     @Override
     public Optional<Estadio> findById(Integer id) {
@@ -101,4 +107,5 @@ public class EstadioRepository implements EstadioDao {
 
         return Collections.emptyList();
     }
+
 }

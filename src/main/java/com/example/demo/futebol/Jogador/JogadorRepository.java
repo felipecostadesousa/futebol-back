@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.futebol.Time.Time;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceException;
@@ -99,6 +101,18 @@ public class JogadorRepository implements JogadorDao{
         }
 
         return Collections.emptyList();
+    }
+
+    @Override
+    public void updateTime(Integer jogadorId, Integer timeId) {
+        try{
+            em.createQuery("UPDATE Jogador j SET j.time.id = :id_time WHERE j.id = :id_jogador")
+                  .setParameter("id_jogador", jogadorId)
+                  .setParameter("id_time", timeId)
+                  .executeUpdate();
+        }catch(PersistenceException e){
+            LOGGER.error("Erro de persistência: não foi possível atualizar o time do jogador", e.getMessage());
+        }
     }
 
 }

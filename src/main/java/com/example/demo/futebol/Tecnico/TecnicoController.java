@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -98,7 +99,7 @@ public class TecnicoController {
         }
     }
            
-    @PutMapping(value="/tecnico/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces= {MediaType.APPLICATION_JSON_VALUE})
+    @PatchMapping(value="/tecnico/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces= {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> update(@PathVariable("id") Integer id, @RequestBody TecnicoRequest request) {
         LOGGER.info("Iniciando atualização de Tecnico pelo id: {}", id);
 

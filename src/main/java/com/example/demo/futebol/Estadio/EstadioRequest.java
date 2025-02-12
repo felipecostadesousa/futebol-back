@@ -29,10 +29,13 @@ public class EstadioRequest {
     private String nome; 
    
     @JsonProperty("capacidadePessoas")
-    private Integer capacidadePessoas; 
+    private Integer capacidadePessoas;
+    
+    @JsonProperty("id_localizacao")
+    private Integer id_localizacao; 
              
     public Estadio transform(Localizacao localizacao){
-        Estadio objEstadio = new Estadio(this.dataFundacao,  this.nome,  this.capacidadePessoas, localizacao);
+        Estadio objEstadio = new Estadio(this.dataFundacao, this.nome,  this.capacidadePessoas, localizacao);
         return objEstadio;
     }
      
@@ -65,6 +68,14 @@ public class EstadioRequest {
     }
     public Integer getCapacidadePessoas() {
         return this.capacidadePessoas;
+    }
+
+    public void setIdLocalizacao( Integer id_localizacao ) {
+      this.id_localizacao = id_localizacao;
+    }
+  
+    public Integer getIdLocalizacao() {
+      return this.id_localizacao;
     }
 
         

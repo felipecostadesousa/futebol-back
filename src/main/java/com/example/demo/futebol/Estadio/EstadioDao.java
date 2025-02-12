@@ -11,5 +11,4 @@ public interface EstadioDao {
     Optional<Estadio> findById(Integer id);
     Optional<Estadio> findByName(String nome);
     List<Estadio> findAll();
-
 }

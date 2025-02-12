@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.example.demo.futebol.Time.Time;
 import com.example.demo.futebol.Time.TimeService;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/time")
@@ -87,7 +89,7 @@ public class JogadorController {
             return ResponseEntity.notFound().header("not-found-id", String.valueOf(id)).build();
         }
     }
-                           
+  
     @PatchMapping(value="/jogador/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces= {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> update(@PathVariable("id") Integer id, @RequestBody JogadorRequest request) {
         LOGGER.info("Iniciando atualização de Jogador pelo id: {}", request.getId());
@@ -108,6 +110,18 @@ public class JogadorController {
             LOGGER.info("Jogador não encontrado(a) pelo id: {}", request.getId());
             return ResponseEntity.notFound().header("not-found-id", String.valueOf(request.getId())).build();
         }
+    }
+
+    @PutMapping(value = "/jogador/{id}/{novoTimeId}", produces= {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<String> atualizarTime(@PathVariable Integer id, @PathVariable Integer novoTimeId) {
+      Optional<Jogador> jogador = service.findById(id);
+      Optional<Time> time = timeService.findById(novoTimeId);
+      if (jogador.isPresent() && time.isPresent()) {
+          service.updateTime(id, novoTimeId);
+          return ResponseEntity.ok("Time do jogador atualizado com sucesso!");
+      } else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Jogador ou time não encontrado.");
+      }
     }
 
 

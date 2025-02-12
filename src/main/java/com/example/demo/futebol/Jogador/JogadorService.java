@@ -2,8 +2,17 @@ package com.example.demo.futebol.Jogador;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.futebol.Estatistica.Estatistica;
+import com.example.demo.futebol.Time.Time;
+import com.example.demo.futebol.Time.TimeDao;
+import com.example.demo.futebol.Time.TimeRepository;
+
+
+
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,11 +26,13 @@ public class JogadorService {
     private static final Logger LOGGER = LoggerFactory.getLogger(JogadorService.class);
 
     private JogadorDao repository;
+    private TimeDao timeRepository;
 
-    public JogadorService(JogadorDao repository) {
+    public JogadorService(JogadorDao repository, TimeDao timeRepository) {
 
         super();
         this.repository = repository;
+        this.timeRepository = timeRepository;
     }
 
     @Transactional
@@ -82,6 +93,24 @@ public class JogadorService {
     }
 
     @Transactional
+    public void updateTime(Integer jogadorId, Integer novoTimeId) {
+        // Verificar se o jogador existe
+        Optional<Jogador> jogadorOptional = repository.findById(jogadorId);
+        if (jogadorOptional.isEmpty()) {
+            throw new EntityNotFoundException("Jogador com ID " + jogadorId + " não encontrado.");
+        }
+
+        // Verificar se o time existe
+        Optional<Time> timeOptional = timeRepository.findById(novoTimeId);
+        if (timeOptional.isEmpty()) {
+            throw new EntityNotFoundException("Time com ID " + novoTimeId + " não encontrado.");
+        }
+
+        // Atualizar o time do jogador
+        repository.updateTime(jogadorId, novoTimeId);
+    }
+
+    @Transactional
     public void delete(Jogador jogador) {
         try {
             LOGGER.info("Deletando jogador com ID: {}", jogador.getIdJogador());
@@ -93,4 +122,5 @@ public class JogadorService {
         }
         this.repository.delete(jogador);
     }
+
 }
