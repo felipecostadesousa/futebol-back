@@ -1,5 +1,6 @@
 package com.example.demo.futebol.Jogador;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +10,7 @@ import org.slf4j.Logger;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.futebol.Time.Time;
+import com.example.demo.futebol.view.EstatisticasJogadoresView;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -113,6 +114,38 @@ public class JogadorRepository implements JogadorDao{
         }catch(PersistenceException e){
             LOGGER.error("Erro de persistência: não foi possível atualizar o time do jogador", e.getMessage());
         }
+    }
+
+    @Override
+    public List<EstatisticasJogadoresView> findView() {
+        String query = "SELECT nome_jogador, nome_time, quantidade_jogos_jogados, quantidade_gols_marcados, quantidade_assistencias_gols FROM vw_estatisticas_jogadores";
+        List<Object[]> resultados = em.createNativeQuery(query).getResultList();
+        
+        List<EstatisticasJogadoresView> listaEstatisticas = new ArrayList<>();
+        
+        for (Object[] resultado : resultados) {
+            EstatisticasJogadoresView estatistica = new EstatisticasJogadoresView();
+            estatistica.setNome_jogador((String) resultado[0]);
+            estatistica.setNome_time((String) resultado[1]);
+            estatistica.setQuantidade_jogos_jogados((Integer) resultado[2]);
+            estatistica.setQuantidade_gols_marcados((Integer) resultado[3]);
+            estatistica.setQuantidade_assistencias_gols((Integer) resultado[4]);
+            
+            listaEstatisticas.add(estatistica);
+        }
+        
+        return listaEstatisticas;
+    }
+
+    @Override
+    public void trocarTime(Integer id_jogador, Integer id_time_destino) throws PersistenceException{
+        String query = "CALL trocar_time_jogador(:id_jogador, :id_time_destino)";
+
+        em.createNativeQuery(query)
+        .setParameter("id_jogador", id_jogador)
+        .setParameter("id_time_destino", id_time_destino)
+        .executeUpdate();
+
     }
 
 }

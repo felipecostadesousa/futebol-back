@@ -3,7 +3,10 @@ package com.example.demo.futebol.Jogador;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.demo.futebol.Time.Time;
+
+import com.example.demo.futebol.view.EstatisticasJogadoresView;
+
+import jakarta.persistence.PersistenceException;
 
 public interface JogadorDao {
 
@@ -14,5 +17,7 @@ public interface JogadorDao {
     Optional<Jogador> findById(Integer id);
     Optional<Jogador> findByName(String nome);
     List<Jogador> findAll();
+    List<EstatisticasJogadoresView> findView();
+    void trocarTime(Integer id_jogador, Integer id_time_destino) throws PersistenceException;
 
 }

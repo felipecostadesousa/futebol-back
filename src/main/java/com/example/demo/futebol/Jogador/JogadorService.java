@@ -2,17 +2,16 @@ package com.example.demo.futebol.Jogador;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.futebol.Estatistica.Estatistica;
+
 import com.example.demo.futebol.Time.Time;
 import com.example.demo.futebol.Time.TimeDao;
-import com.example.demo.futebol.Time.TimeRepository;
 
 
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.PersistenceException;
 import jakarta.transaction.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -121,6 +120,11 @@ public class JogadorService {
             throw e;
         }
         this.repository.delete(jogador);
+    }
+
+    @Transactional
+    public void trocarTimeJogador(Integer id_jogador, Integer id_time_destino) throws PersistenceException{
+        this.repository.trocarTime(id_jogador, id_time_destino);
     }
 
 }

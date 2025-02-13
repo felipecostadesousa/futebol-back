@@ -18,13 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.demo.futebol.Time.Time;
 import com.example.demo.futebol.Time.TimeService;
 
-import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.PersistenceException;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -123,6 +122,18 @@ public class JogadorController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Jogador ou time não encontrado.");
       }
     }
+
+    @PostMapping(value = "/jogador/{id_jogador}/{id_time_destino}")
+    public ResponseEntity<String> trocarTimeJogador(@PathVariable Integer id_jogador, @PathVariable Integer id_time_destino){
+        LOGGER.info("Iniciando Troca de time: {}");
+        try{
+            service.trocarTimeJogador(id_jogador, id_time_destino);
+            return ResponseEntity.ok("Time trocado com sucesso!");
+        }catch(PersistenceException e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getCause().getMessage());
+        }
+    }
+    
 
 
     @DeleteMapping(value="/Jogador/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
