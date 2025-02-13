@@ -2,7 +2,6 @@ package com.example.demo.futebol.Jogador;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -111,19 +110,7 @@ public class JogadorController {
         }
     }
 
-    @PutMapping(value = "/jogador/{id}/{novoTimeId}", produces= {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> atualizarTime(@PathVariable Integer id, @PathVariable Integer novoTimeId) {
-      Optional<Jogador> jogador = service.findById(id);
-      Optional<Time> time = timeService.findById(novoTimeId);
-      if (jogador.isPresent() && time.isPresent()) {
-          service.updateTime(id, novoTimeId);
-          return ResponseEntity.ok("Time do jogador atualizado com sucesso!");
-      } else {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Jogador ou time não encontrado.");
-      }
-    }
-
-    @PostMapping(value = "/jogador/{id_jogador}/{id_time_destino}")
+    @PutMapping(value = "/jogador/{id_jogador}/{id_time_destino}")
     public ResponseEntity<String> trocarTimeJogador(@PathVariable Integer id_jogador, @PathVariable Integer id_time_destino){
         LOGGER.info("Iniciando Troca de time: {}");
         try{

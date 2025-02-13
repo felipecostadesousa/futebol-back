@@ -3,12 +3,9 @@ package com.example.demo.futebol.Jogador;
 import org.springframework.stereotype.Service;
 
 
-import com.example.demo.futebol.Time.Time;
 import com.example.demo.futebol.Time.TimeDao;
 
 
-
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceException;
 import jakarta.transaction.Transactional;
 
@@ -89,24 +86,6 @@ public class JogadorService {
             throw e;
         }
         this.repository.update(jogador);
-    }
-
-    @Transactional
-    public void updateTime(Integer jogadorId, Integer novoTimeId) {
-        // Verificar se o jogador existe
-        Optional<Jogador> jogadorOptional = repository.findById(jogadorId);
-        if (jogadorOptional.isEmpty()) {
-            throw new EntityNotFoundException("Jogador com ID " + jogadorId + " não encontrado.");
-        }
-
-        // Verificar se o time existe
-        Optional<Time> timeOptional = timeRepository.findById(novoTimeId);
-        if (timeOptional.isEmpty()) {
-            throw new EntityNotFoundException("Time com ID " + novoTimeId + " não encontrado.");
-        }
-
-        // Atualizar o time do jogador
-        repository.updateTime(jogadorId, novoTimeId);
     }
 
     @Transactional

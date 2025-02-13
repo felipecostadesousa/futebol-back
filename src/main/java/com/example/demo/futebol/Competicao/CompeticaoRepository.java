@@ -18,6 +18,10 @@ public class CompeticaoRepository implements CompeticaoDao{
     private EntityManager em;
     private static final Logger LOGGER = LoggerFactory.getLogger(CompeticaoRepository.class.getName());
 
+    public CompeticaoRepository(EntityManager em){
+        this.em = em;
+    }
+
     @Override
     public void save(Competicao competicao) {
         try {

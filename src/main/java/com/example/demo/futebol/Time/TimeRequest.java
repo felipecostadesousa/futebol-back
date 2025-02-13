@@ -47,6 +47,9 @@ public class TimeRequest {
     
     @JsonProperty("valorMercado")
     private Double valorMercado; 
+
+    @JsonProperty("idEstadio")
+    private Integer idEstadio;
         
     public Time transform(Estadio estadio, Localizacao localizacao){
         Time time = new Time(  this.id,  this.imagemEscudo,  this.nome,  this.apelido,  this.dataFundacao,  this.siteTimeUrl,  this.quantidadeSocios,  this.quantidadeJogadoresSelecao,  this.valorMercado, estadio, localizacao);
@@ -116,6 +119,7 @@ public class TimeRequest {
         return this.valorMercado;
     }
 
+    
           
     @Override
     public String toString() {
@@ -164,6 +168,14 @@ public class TimeRequest {
 
     public String logString() {
         return ("Adicione uma implmenentação adequada.");
+    }
+
+    public Integer getIdEstadio() {
+        return idEstadio;
+    }
+
+    public void setIdEstadio(Integer idEstadio) {
+        this.idEstadio = idEstadio;
     }
 
 }

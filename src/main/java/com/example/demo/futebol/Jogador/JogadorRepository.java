@@ -105,18 +105,6 @@ public class JogadorRepository implements JogadorDao{
     }
 
     @Override
-    public void updateTime(Integer jogadorId, Integer timeId) {
-        try{
-            em.createQuery("UPDATE Jogador j SET j.time.id = :id_time WHERE j.id = :id_jogador")
-                  .setParameter("id_jogador", jogadorId)
-                  .setParameter("id_time", timeId)
-                  .executeUpdate();
-        }catch(PersistenceException e){
-            LOGGER.error("Erro de persistência: não foi possível atualizar o time do jogador", e.getMessage());
-        }
-    }
-
-    @Override
     public List<EstatisticasJogadoresView> findView() {
         String query = "SELECT nome_jogador, nome_time, quantidade_jogos_jogados, quantidade_gols_marcados, quantidade_assistencias_gols FROM vw_estatisticas_jogadores";
         List<Object[]> resultados = em.createNativeQuery(query).getResultList();
@@ -140,11 +128,14 @@ public class JogadorRepository implements JogadorDao{
     @Override
     public void trocarTime(Integer id_jogador, Integer id_time_destino) throws PersistenceException{
         String query = "CALL trocar_time_jogador(:id_jogador, :id_time_destino)";
-
-        em.createNativeQuery(query)
-        .setParameter("id_jogador", id_jogador)
-        .setParameter("id_time_destino", id_time_destino)
-        .executeUpdate();
+        try{
+            em.createNativeQuery(query)
+            .setParameter("id_jogador", id_jogador)
+            .setParameter("id_time_destino", id_time_destino)
+            .executeUpdate(); 
+        } catch (PersistenceException e){
+            LOGGER.error("Erro de persistência: não foi possível atualizar o time do jogador", e.getMessage());
+        }
 
     }
 
